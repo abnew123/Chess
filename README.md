@@ -14,44 +14,44 @@ From non coding perspective, want:
 From coding perspective need:
 
 Front end:
-	all chess piece graphics
-	all visual components (load game, save game, new game)
-	various sub screens (new game should open up its own screen)
-	allow drag + click interactivity with chess pieces
-	“fancy features” (highlighting possible moves?, board themes?) - do last
+* all chess piece graphics
+* all visual components (load game, save game, new game)
+* various sub screens (new game should open up its own screen)
+* allow drag + click interactivity with chess pieces
+* “fancy features” (highlighting possible moves?, board themes?) - do last
 
 Backend:
-	all chess rules coded in
-	conversion of game states into strings (PGN/FEN, probably both)
-	building a half decent ai
-	save/load locations
-	Repertoire structure
+* all chess rules coded in
+* conversion of game states into strings (PGN/FEN, probably both)
+* building a half decent ai
+* save/load locations
+* Repertoire structure
 
 Classes needed: 
 
 Backend: 
-	Piece superclass/interface
-		Pawn, knight, bishop, rook, queen, king
-		methods: move, capture
-		state: location, owner(?)
-	Board
-		methods: initialize
-		state: players, timer
-	Rule set (To allow for fisher random?)
-	Load 
-	Save
-	Repertoire (Serializable?)
-		Move stored
-		List of repertoires
-	Move
-		methods: toString
-		state: piece, source, destination, capture (boolean)
-	Location
-		state: row + column
+* Piece superclass/interface
+	* Pawn, knight, bishop, rook, queen, king
+	* methods: move, capture
+	* state: location, owner(?)
+* Board
+	* methods: initialize
+	* state: players, timer
+* Rule set (To allow for fisher random?)
+* Load 
+* Save
+* Repertoire (Serializable?)
+	* Move stored
+	* List of repertoires
+* Move
+	* methods: toString
+	* state: piece, source, destination, capture (boolean)
+* Location
+	* state: row + column
 
 Frontend: 
-	Start screen (for new game)
-	main screen
-	Menu (With save/load/etc… buttons)
-	Displays (for timer, pgn/fen)
+* Start screen (for new game)
+* main screen
+* Menu (With save/load/etc… buttons)
+* Displays (for timer, pgn/fen)
 
