@@ -10,6 +10,7 @@ From non coding perspective, want:
 6. Ability to store repertoire 
 7. The ability to save a game
 8. Timer for play
+9. Have separate profiles for each player
 
 From coding perspective need:
 
@@ -19,6 +20,7 @@ Front end:
 * various sub screens (new game should open up its own screen)
 * allow drag + click interactivity with chess pieces
 * “fancy features” (highlighting possible moves?, board themes?) - do last
+* allow user to choose user profile
 
 Backend:
 * all chess rules coded in
@@ -26,6 +28,7 @@ Backend:
 * building a half decent ai
 * save/load locations
 * Repertoire structure
+* load user profile
 
 Classes needed: 
 
@@ -40,6 +43,7 @@ Backend:
 * Rule set (To allow for fisher random?)
 * Load 
 * Save
+* Game
 * Repertoire (Serializable?)
 	* Move stored
 	* List of repertoires
@@ -48,6 +52,9 @@ Backend:
 	* state: piece, source, destination, capture (boolean)
 * Location
 	* state: row + column
+* User
+	* methods: load/save
+	* state: list of games
 
 Frontend: 
 * Start screen (for new game)
