@@ -39,11 +39,14 @@ Backend:
 	* state: location, owner(?)
 * Board
 	* methods: initialize
-	* state: players, timer
-* Rule set (To allow for fisher random?)
+	* state: players, timer, Position
+* Position
 * Load 
 * Save
 * Game
+	* state: Player1, Player2, List of Turns
+* Turn
+	* state: move, prePosition, postPosition
 * Repertoire (Serializable?)
 	* Move stored
 	* List of repertoires
