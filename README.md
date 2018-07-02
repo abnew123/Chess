@@ -38,7 +38,7 @@ Backend:
 	* methods: move, capture
 	* state: location, owner(?)
 * Board
-	* methods: initialize
+	* methods: initialize, toString
 	* state: players, timer, Position
 * Position
 * Load 
@@ -46,13 +46,13 @@ Backend:
 * Game
 	* state: Player1, Player2, List of Turns
 * Turn
+	* methods: toString
 	* state: move, prePosition, postPosition
 * Repertoire (Serializable?)
 	* Move stored
 	* List of repertoires
 * Move
-	* methods: toString
-	* state: piece, source, destination, capture (boolean)
+	* state: piece, source, destination, capture (boolean), enpasssant (boolean), castling (boolean)
 * Location
 	* state: row + column
 * User
