@@ -36,25 +36,30 @@ Backend:
 * Piece superclass/interface
 	* Pawn, knight, bishop, rook, queen, king
 	* methods: move, capture
-	* state: location, owner(?)
+	* state: location, color
 * Board
 	* methods: initialize, toString
 	* state: players, timer, Position
 * Position
-* Load 
-* Save
+	* methods: toFEN
+	* state: 2d array of Squares
+* Square
+	* methods: toString
+	* state: row, column
 * Game
+	* methods: load and save
 	* state: Player1, Player2, List of Turns
-* Turn
+* Half-Turn (hierarchy: subclasses whitehalfturn and blackhalfturn)
 	* methods: toString
 	* state: move, prePosition, postPosition
+* Full turn
+	* methods: toString
+	* state: whitehalfturn, blackhalfturn
 * Repertoire (Serializable?)
-	* Move stored
-	* List of repertoires
+	* methods: add(repertoire), returnChildren
+	* stateL halfTurn stored, List of repertoires
 * Move
 	* state: piece, source, destination, capture (boolean), enpasssant (boolean), castling (boolean)
-* Location
-	* state: row + column
 * User
 	* methods: load/save
 	* state: list of games
