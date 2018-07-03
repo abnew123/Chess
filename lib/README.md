@@ -1,3 +1,4 @@
-# voogasalad
+Contains necessary libraries for program to function
 
-Put library jar files required by your project here.
+Currently:
+* Xstream
