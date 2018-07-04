@@ -1,5 +1,9 @@
 package backend;
 
-public interface Move {
-	// pretty passive class, no methods i can think of, will just store piece, source, destination
+public class Move {
+	private Piece piece;
+	private Square source;
+	private Square destination;
+	private boolean capture;
+	private boolean promotion;
 }

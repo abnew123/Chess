@@ -1,9 +1,9 @@
 package backend;
 
-public interface Piece {
-	public boolean getColor();
+public abstract class Piece {
+	public abstract boolean getColor();
 
-    public boolean isInBoard(char file, char rank) ;
+    public abstract boolean isInBoard(int file, int rank) ;
 
     public abstract String algebraicName();
 
@@ -11,5 +11,6 @@ public interface Piece {
 
     public abstract Square[] movesFrom(Square square);
 
-    public String toString();
+    public abstract String toString();
+   
 }
