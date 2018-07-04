@@ -1,4 +1,4 @@
-package voogasalad_raptiltswagger;
+package backend;
 import java.util.List;
 public interface Reader {
 	/**

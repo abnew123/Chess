@@ -1,9 +1,7 @@
-package images;
+package backend;
 
 public interface Piece {
-	public Color getColor() {
-        return color;
-    }
+	public boolean getColor();
 
     public boolean isInBoard(char file, char rank) ;
 
