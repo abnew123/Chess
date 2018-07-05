@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="lib/xstream-1.4.10 2/lib/xstream-benchmark-1.4.10.jar"/>
 	<classpathentry kind="lib" path="lib/xstream-1.4.10 2/lib/xstream-hibernate-1.4.10.jar"/>
 	<classpathentry kind="lib" path="lib/xstream-1.4.10 2/lib/xstream-jmh-1.4.10.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
