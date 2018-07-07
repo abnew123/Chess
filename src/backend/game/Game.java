@@ -1,6 +1,8 @@
-package backend;
+package backend.game;
 
 import java.util.List;
+
+import backend.HalfTurn;
 
 public interface Game {
 	public void load();
