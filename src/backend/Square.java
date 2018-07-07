@@ -18,7 +18,7 @@ public class Square {
 	 */
 	public Square(int file, int rank) {
 		if(1 > rank || 1 > file || rank > 8 || file > 8) {
-			throw new IndexOutOfBoundsException();
+			throw new InvalidSquareException("" + ((char)('a' + file - 1)) + rank);
 		}
 		this.file = file;
 		this.rank = rank;
@@ -41,6 +41,7 @@ public class Square {
     public String toString() {
     		return "" + ((char)('a' + file - 1)) + rank;
     }
+    
     /**
      * calculates taxi-cab distance to another square
      * @param otherSquare
