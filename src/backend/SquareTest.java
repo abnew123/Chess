@@ -28,8 +28,8 @@ public class SquareTest {
 			@SuppressWarnings("unused")
 			Square square = new Square(23, 1);
 			fail("missed exception");
-		} catch(IndexOutOfBoundsException e) {
-			
+		} catch(InvalidSquareException e) {
+			System.out.println(e);
 		}
 		
 	}

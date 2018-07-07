@@ -1,5 +1,7 @@
 package backend;
 
+import backend.piece.Piece;
+
 public class HalfTurn {
 	private Piece piece;
 	private Square source;
