@@ -7,7 +7,7 @@ package backend;
  *
  */
 //TODO make new exception for invalid square
-public class Square {
+public class Square implements Comparable{
 	
 	private int file;
 	private int rank;
@@ -25,9 +25,12 @@ public class Square {
 	}
 	public Square(String algebraicForm) {
 		if(!algebraicForm.matches("[a-hA-H]\\d")) {
-			throw new IndexOutOfBoundsException();
+			throw new InvalidSquareException(algebraicForm);
 		}
 		rank = Integer.parseInt(algebraicForm.substring(1));
+		if(1 > rank || rank > 8) {
+			throw new InvalidSquareException(algebraicForm);
+		}
 		file = algebraicForm.charAt(0) - 'a' + 1;
 	}
 	public int getFile() {
@@ -49,4 +52,15 @@ public class Square {
     public int distanceToOther(Square otherSquare) {
     		return Math.abs(file - otherSquare.getFile()) + Math.abs(rank - otherSquare.getRank());
     }
+	@Override
+	public int compareTo(Object o) {
+		if(!o.getClass().equals(this.getClass())){
+			return -1;
+		}
+		Square other = (Square) o;
+		if(other.getRank() != rank) {
+			return other.getRank() - rank;
+		}
+		return other.getFile() - file;
+	}
 }
