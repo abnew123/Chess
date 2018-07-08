@@ -1,4 +1,4 @@
-package backend;
+package backend.data;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -8,6 +8,8 @@ import java.util.List;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+
+import backend.AlertMaker;
 /**
  * class for writing data
  * errors checks location

@@ -1,4 +1,4 @@
-package backend;
+package backend.data;
 
 import java.io.EOFException;
 import java.io.FileNotFoundException;
@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+
+import backend.AlertMaker;
 /**
  * class for loading data
  * error checks size and location
