@@ -26,7 +26,10 @@ public class FinishedGame {
 		String result = "";
 		for(int i = 0; i < moves.size(); i++) {
 			if(i%2 == 0) {
-				result += i/2;
+				if(i!=0) {
+					result +="\n";
+				}
+				result += 1+ (i/2);
 				result+= ". ";
 			}
 			else {

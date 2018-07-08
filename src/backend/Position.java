@@ -13,10 +13,8 @@ import backend.piece.Rook;
 
 public class Position {
 	private Map<Square, Piece> pieces;
-	private boolean sideToMove;
 	public Position() {
 		pieces = new TreeMap<>();
-		sideToMove = true;
 		addPieces();
 	}
 	public String toFEN() {
@@ -89,5 +87,9 @@ public class Position {
 			result+= "/";
 		}
 		return result;
+	}
+	
+	public boolean pieceOnSquare(Square square) {
+		return pieces.keySet().contains(square);
 	}
 }
