@@ -29,6 +29,9 @@ public class HalfTurn {
 		if(needDisambiguation()){
 			//TODO figure out how to disambiguate
 		}
+		if(enpassant()) {
+			pgnCode+= source.toString().substring(0,1);
+		}
 		if(capture()) {
 			pgnCode+="x";
 		}
@@ -46,8 +49,14 @@ public class HalfTurn {
 		return false;
 	}
 	private boolean capture() {
-		//TODO figure out en passant
-		return prePosition.pieceOnSquare(destination);
+		return prePosition.pieceOnSquare(destination)|| enpassant();
+	}
+	
+	private boolean enpassant() {
+		if(!piece.algebraicName().equals("")||!(source.distanceToOther(destination) == 2) || source.getRank() == 2 || source.getRank() == 7) {
+			return false;
+		}
+		return !prePosition.pieceOnSquare(destination);
 	}
 	private boolean check() {
 		//TODO figure out if any piece of same color is attacking opposing king.
@@ -56,5 +65,29 @@ public class HalfTurn {
 	private boolean checkmate() {
 		//TODO figure out if opposing king has no available moves
 		return false;
+	}
+	/**
+	 * if a piece was captured, the square it was captured on is returned
+	 * @return
+	 */
+	public Square squarePieceWasCapturedOn() {
+		if(capture()) {
+			if(!enpassant()) {
+				return destination;
+			}
+			else {
+				if(piece.getColor()) {
+					return new Square(destination.getFile(), destination.getRank() - 1);
+				}
+				else {
+					return new Square(destination.getFile(), destination.getRank() + 1);
+				}
+			}
+		}
+		return null;
+	}
+	
+	public Square[] initialAndFinalLocation() {
+		return new Square[] {source,destination};
 	}
 }

@@ -17,10 +17,18 @@ public class Position {
 		pieces = new TreeMap<>();
 		addPieces();
 	}
+	
+	public Position(Position position) {
+		pieces = new TreeMap<>();
+		for(Square square: position.getPieces().keySet()) {
+			pieces.put(square, position.getPieces().get(square));
+		}
+	}
+	
 	public String toFEN() {
 		String result = "";
 		for(int i = 8; i > 0; i--) {
-			result += constructRow(i);
+			result += constructRowForFEN(i);
 		}
 		
 		return result;
@@ -65,7 +73,7 @@ public class Position {
 		
 	}
 	
-	private String constructRow(int row) {
+	private String constructRowForFEN(int row) {
 		String result = "";
 		int emptycounter = 0;
 		for(int i = 1; i < 9; i++) {
@@ -91,5 +99,41 @@ public class Position {
 	
 	public boolean pieceOnSquare(Square square) {
 		return pieces.keySet().contains(square);
+	}
+	
+	public void update(HalfTurn ply) {
+		if(ply.squarePieceWasCapturedOn() != null) {
+			pieces.remove(ply.squarePieceWasCapturedOn());
+		}
+		pieces.put(ply.initialAndFinalLocation()[1], pieces.remove(ply.initialAndFinalLocation()[0]));
+		
+	}
+	
+	public String toVisibleBoard() {
+		String result = " - - - - - - - - \n";
+		for(int i = 8; i > 0; i--) {
+			result += constructRowForVisibleBoard(i);
+			result += " - - - - - - - - \n";
+		}
+		return result;
+	}
+	
+	private String constructRowForVisibleBoard(int row) {
+		String result = "|";
+		for(int i = 1; i < 9; i++) {
+			if(pieces.keySet().contains(new Square(i,row))) {
+				result+= pieces.get(new Square(i,row)).fenName();
+			}
+			else {
+				result+=" ";
+			}
+			result+="|";
+		}
+		result+= "\n";
+		return result;
+	}
+	
+	public Map<Square, Piece> getPieces(){
+		return pieces;
 	}
 }

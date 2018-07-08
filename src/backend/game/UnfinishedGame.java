@@ -17,7 +17,7 @@ public class UnfinishedGame {
 	
 	public void addPly(HalfTurn ply) {
 		moves.add(ply);
-		//TODO update position based on ply
+		currentPosition.update(ply);
 	}
 	
 	public String getWinner() {
@@ -50,5 +50,9 @@ public class UnfinishedGame {
 			result+= moves.get(i).toString();
 		}
 		return result;
+	}
+	
+	public Position getPosition() {
+		return currentPosition;
 	}
 }
