@@ -1,5 +1,6 @@
 package backend.piece;
 
+import backend.Position;
 import backend.Square;
 
 public abstract class Piece {
@@ -15,7 +16,7 @@ public abstract class Piece {
 
     public abstract String fenName();
 
-    public abstract Square[] movesFrom(Square square);
+    public abstract Square[] movesFrom(Position position, Square square);
 
     public boolean squareOnBoard(int file, int rank) {
     		return (file > 0 && file < 9) && (rank > 0 && rank < 9);

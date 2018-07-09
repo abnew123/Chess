@@ -1,5 +1,7 @@
 package backend;
 
+import java.util.Arrays;
+
 import backend.piece.Piece;
 
 public class HalfTurn {
@@ -59,12 +61,18 @@ public class HalfTurn {
 		return !prePosition.pieceOnSquare(destination);
 	}
 	private boolean check() {
-		//TODO figure out if any piece of same color is attacking opposing king.
+		Square opposingKingSquare = prePosition.getSquareFromPiece(prePosition.getKingPiece(!piece.getColor()));
+		for(Square square: prePosition.getPieces().keySet()) {
+			if(Arrays.asList(prePosition.getPieces().get(square).movesFrom(prePosition, square)).contains(opposingKingSquare)) {
+				return true;
+			}
+		}
 		return false;
 	}
 	private boolean checkmate() {
-		//TODO figure out if opposing king has no available moves
-		return false;
+		Position prePositionCopy = new Position(prePosition);
+		prePositionCopy.update(this);
+		return check() && prePositionCopy.containsNoLegalMoves(!piece.getColor());
 	}
 	/**
 	 * if a piece was captured, the square it was captured on is returned
@@ -89,5 +97,9 @@ public class HalfTurn {
 	
 	public Square[] initialAndFinalLocation() {
 		return new Square[] {source,destination};
+	}
+	
+	public boolean playable() {
+		return prePosition.getSquareFromPiece(piece).equals(source) && Arrays.asList(piece.movesFrom(prePosition, source)).contains(destination);
 	}
 }
