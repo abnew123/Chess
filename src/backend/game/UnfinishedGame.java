@@ -16,8 +16,11 @@ public class UnfinishedGame {
 	}
 	
 	public void addPly(HalfTurn ply) {
-		moves.add(ply);
-		currentPosition.update(ply);
+		if(currentPosition.movePlayable(ply)) {
+			moves.add(ply);
+			currentPosition.update(ply);
+		}
+		
 	}
 	
 	public String getWinner() {
