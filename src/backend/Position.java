@@ -1,5 +1,7 @@
 package backend;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -148,14 +150,14 @@ public class Position {
 		
 	}
 	
-	public Square getSquareFromPiece(Piece piece) {
+	public List<Square> getSquaresFromPiece(Piece piece) {
+		List<Square> squares = new ArrayList<>();
 		for(Square square: pieces.keySet()) {
 			if(pieces.get(square).equals(piece)) {
-				return square;
+				squares.add(square);
 			}
 		}
-		//should never be reached
-		return null;
+		return squares;
 	}
 	/**
 	 * checks that one side (specified by color) has not legal moves left
