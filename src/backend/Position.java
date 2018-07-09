@@ -118,11 +118,6 @@ public class Position {
 		return result;
 	}
 	
-	public boolean movePlayable(HalfTurn ply) {
-		//TODO  check if a given move can be played in the given position
-		return true;
-	}
-	
 	private String constructRowForVisibleBoard(int row) {
 		String result = "|";
 		for(int i = 1; i < 9; i++) {
@@ -140,5 +135,39 @@ public class Position {
 	
 	public Map<Square, Piece> getPieces(){
 		return pieces;
+	}
+	
+	public Piece getKingPiece(boolean color) {
+		for(Piece piece:pieces.values()) {
+			if(piece.algebraicName().equals("K")&& piece.getColor() == color) {
+				return piece;
+			}
+		}
+		//should never be reached
+		return null;
+		
+	}
+	
+	public Square getSquareFromPiece(Piece piece) {
+		for(Square square: pieces.keySet()) {
+			if(pieces.get(square).equals(piece)) {
+				return square;
+			}
+		}
+		//should never be reached
+		return null;
+	}
+	/**
+	 * checks that one side (specified by color) has not legal moves left
+	 * @param color
+	 * @return
+	 */
+	public boolean containsNoLegalMoves(boolean color) {
+		for(Square square: pieces.keySet()) {
+			if((pieces.get(square).getColor() != color) || pieces.get(square).movesFrom(this, square).length != 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

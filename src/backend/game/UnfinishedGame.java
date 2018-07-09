@@ -16,7 +16,7 @@ public class UnfinishedGame {
 	}
 	
 	public void addPly(HalfTurn ply) {
-		if(currentPosition.movePlayable(ply)) {
+		if(ply.playable()) {
 			moves.add(ply);
 			currentPosition.update(ply);
 		}
