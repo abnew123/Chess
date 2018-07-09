@@ -118,6 +118,11 @@ public class Position {
 		return result;
 	}
 	
+	public boolean movePlayable(HalfTurn ply) {
+		//TODO  check if a given move can be played in the given position
+		return true;
+	}
+	
 	private String constructRowForVisibleBoard(int row) {
 		String result = "|";
 		for(int i = 1; i < 9; i++) {

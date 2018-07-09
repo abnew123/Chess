@@ -6,8 +6,7 @@ package backend;
  * @author shichengrao
  *
  */
-//TODO make new exception for invalid square
-public class Square implements Comparable{
+public class Square{
 	
 	private int file;
 	private int rank;
@@ -52,15 +51,4 @@ public class Square implements Comparable{
     public int distanceToOther(Square otherSquare) {
     		return Math.abs(file - otherSquare.getFile()) + Math.abs(rank - otherSquare.getRank());
     }
-	@Override
-	public int compareTo(Object o) {
-		if(!o.getClass().equals(this.getClass())){
-			return -1;
-		}
-		Square other = (Square) o;
-		if(other.getRank() != rank) {
-			return other.getRank() - rank;
-		}
-		return other.getFile() - file;
-	}
 }
