@@ -61,7 +61,7 @@ public class HalfTurn {
 		return !prePosition.pieceOnSquare(destination);
 	}
 	private boolean check() {
-		Square opposingKingSquare = prePosition.getSquareFromPiece(prePosition.getKingPiece(!piece.getColor()));
+		Square opposingKingSquare = prePosition.getSquaresFromPiece(prePosition.getKingPiece(!piece.getColor())).get(0);
 		for(Square square: prePosition.getPieces().keySet()) {
 			if(Arrays.asList(prePosition.getPieces().get(square).movesFrom(prePosition, square)).contains(opposingKingSquare)) {
 				return true;
@@ -100,6 +100,6 @@ public class HalfTurn {
 	}
 	
 	public boolean playable() {
-		return prePosition.getSquareFromPiece(piece).equals(source) && Arrays.asList(piece.movesFrom(prePosition, source)).contains(destination);
+		return prePosition.getSquaresFromPiece(piece).contains(source) && Arrays.asList(piece.movesFrom(prePosition, source)).contains(destination);
 	}
 }
