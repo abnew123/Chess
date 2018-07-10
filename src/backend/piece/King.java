@@ -1,5 +1,10 @@
 package backend.piece;
+import java.util.ArrayList;
+import java.util.List;
+
+import backend.Position;
 import backend.Square;
+import backend.game.Game;
 
 public class King extends Piece {
     public King(boolean color) {
@@ -14,27 +19,31 @@ public class King extends Piece {
         return getColor() ? "K" : "k";
     }
 
-    public Square[] movesFrom(Square square) {
-        Square[] sq = new Square[8];
-        int counter = 0;
-        int rank = square.getRank();
-        int file = square.getFile();
-        for (int r = -1; r <= 1; r++) {
-            for (int c = -1; c <= 1; c++) {
-                if (r == 0 && c == 0) {
-                    continue;
-                }
-                if (squareOnBoard((file + c), (rank + r))) {
-                    sq[counter++] = new Square((file + c), (rank + r));
-                }
-            }
-        }
+	@Override
+	public List<Square> possibleMoves(Position position, Square square) {
+		List<Square> squares = new ArrayList<>();
+		int[] verticalOptions = new int[] {-1, 0, 1};
+		int[] horizontalOptions = new int[] {-1, 0, 1};
+		for(int vertOffset: verticalOptions) {
+			for(int horizOffset: horizontalOptions) {
+				if(squareOnBoard(square.getFile() + horizOffset, square.getRank() + vertOffset)) {
+					Square test = new Square(square.getFile() + horizOffset, square.getRank() + vertOffset);
+					if(!test.equals(square)) {
+						if(!position.pieceOnSquare(test) || (position.pieceOnSquare(test) && position.getPieceOnSquare(test).getColor() != getColor())){
+							squares.add(test);
+						}
+					}
+				}
+			}
+		}
+		return squares;
+	}
 
-        Square[] full = new Square[counter];
-        for (int i = 0; i < counter; i++) {
-            full[i] = sq[i];
-        }
+	@Override
+	public List<Square> possibleMovesFull(Game game, Square square) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-        return full;
-    }
+    
 }
