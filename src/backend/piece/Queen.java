@@ -53,10 +53,4 @@ public class Queen extends Piece {
 	 	return squares;
     }
 
-	@Override
-	public List<Square> possibleMovesFull(Game game, Square square) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

@@ -3,10 +3,11 @@ package backend.game;
 import java.util.List;
 
 import backend.HalfTurn;
+import backend.Position;
 
-public interface Game {
-	public void load();
-	public void save();
-	public String getWinner();
-	public List<HalfTurn> getTurns();
+public abstract class Game {
+	public abstract void load();
+	public abstract void save();
+	public abstract List<HalfTurn> getTurns();
+	public abstract Position getPosition();
 }
