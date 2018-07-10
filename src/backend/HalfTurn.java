@@ -61,18 +61,19 @@ public class HalfTurn {
 		return !prePosition.pieceOnSquare(destination);
 	}
 	private boolean check() {
-		Square opposingKingSquare = prePosition.getSquaresFromPiece(prePosition.getKingPiece(!piece.getColor())).get(0);
-		for(Square square: prePosition.getPieces().keySet()) {
-			if(Arrays.asList(prePosition.getPieces().get(square).movesFrom(prePosition, square)).contains(opposingKingSquare)) {
-				return true;
-			}
-		}
+//		Square opposingKingSquare = prePosition.getSquaresFromPiece(prePosition.getKingPiece(!piece.getColor())).get(0);
+//		for(Square square: prePosition.getPieces().keySet()) {
+//			if(Arrays.asList(prePosition.getPieces().get(square).movesFrom(prePosition, square)).contains(opposingKingSquare)) {
+//				return true;
+//			}
+//		}
 		return false;
 	}
 	private boolean checkmate() {
-		Position prePositionCopy = new Position(prePosition);
-		prePositionCopy.update(this);
-		return check() && prePositionCopy.containsNoLegalMoves(!piece.getColor());
+//		Position prePositionCopy = new Position(prePosition);
+//		prePositionCopy.update(this);
+//		return check() && prePositionCopy.containsNoLegalMoves(!piece.getColor());
+		return false;
 	}
 	/**
 	 * if a piece was captured, the square it was captured on is returned
@@ -100,6 +101,7 @@ public class HalfTurn {
 	}
 	
 	public boolean playable() {
-		return prePosition.getSquaresFromPiece(piece).contains(source) && Arrays.asList(piece.movesFrom(prePosition, source)).contains(destination);
+		//return prePosition.getSquaresFromPiece(piece).contains(source) && Arrays.asList(piece.movesFrom(prePosition, source)).contains(destination);
+		return true;
 	}
 }
