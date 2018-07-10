@@ -166,10 +166,14 @@ public class Position {
 	 */
 	public boolean containsNoLegalMoves(boolean color) {
 		for(Square square: pieces.keySet()) {
-			if((pieces.get(square).getColor() != color) || pieces.get(square).movesFrom(this, square).length != 0) {
+			if((pieces.get(square).getColor() != color) || pieces.get(square).possibleMoves(this, square).size() != 0) {
 				return false;
 			}
 		}
 		return true;
+	}
+	
+	public Piece getPieceOnSquare(Square square) {
+		return pieces.get(square);
 	}
 }

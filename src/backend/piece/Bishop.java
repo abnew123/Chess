@@ -1,6 +1,11 @@
 package backend.piece;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import backend.Position;
 import backend.Square;
+import backend.game.Game;
 
 public class Bishop extends Piece {
     public Bishop(boolean color) {
@@ -15,35 +20,42 @@ public class Bishop extends Piece {
         return getColor() ? "B" : "b";
     }
 
-    public Square[] movesFrom(Square square) {
-        Square[] sq = new Square[27];
-        int counter = 0;
-        int rank = square.getRank();
-        int file = square.getFile();
-        for (int i = 1; i <= 8; i++) {
-            int[] ranks = new int[]{(rank + i), (rank - i)};
-            int[] files = new int[]{(file + i), (file - i)};
-            if (squareOnBoard(files[0], ranks[0])) {
-                sq[counter++] = new Square(files[0], ranks[0]);
-            }
-            if (squareOnBoard(files[1], ranks[0])) {
-                sq[counter++] = new Square(files[1], ranks[0]);
-            }
-            if (squareOnBoard(files[0], ranks[1])) {
-                sq[counter++] = new Square(files[0], ranks[1]);
-            }
-            if (squareOnBoard(files[1], ranks[1])) {
-                sq[counter++] = new Square(files[1], ranks[1]);
-            }
-        }
-
-        Square[] full = new Square[counter];
-        for (int i = 0; i < counter; i++) {
-            full[i] = sq[i];
-        }
-
-        return full;
+    public List<Square> possibleMoves(Position position, Square square) {
+    		List<Square> squares = new ArrayList<>();
+    		squares.addAll(iterate(1,1, position, square));
+    		squares.addAll(iterate(-1,1, position, square));
+    		squares.addAll(iterate(1,-1, position, square));
+    		squares.addAll(iterate(-1,-1, position, square));
+        return squares;
+    }
+    private List<Square> iterate(int vertical, int horizontal, Position position, Square square){
+    		List<Square> squares = new ArrayList<>();
+    		int rank = square.getRank();
+    	 	int file = square.getFile();
+    	 	for (int i = 1; i <= 8; i++) {
+    	 		if(squareOnBoard(file + (i * horizontal), rank + (i * vertical))) {
+    	 			Square test = new Square(file + (i * horizontal), rank + (i * vertical));
+    	 			if(position.pieceOnSquare(test)) {
+    	 				if(position.getPieceOnSquare(test).getColor() != getColor()) {
+    	 					squares.add(test);
+    	 				}
+    	 				break;
+    	 			}
+    	 			else {
+    	 				squares.add(test);
+    	 			}
+    	 		}
+    	 		else {
+    	 			break; 
+    	 		}
+    	 	}
+    	 	return squares;
     }
 
+	@Override
+	public List<Square> possibleMovesFull(Game game, Square square) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

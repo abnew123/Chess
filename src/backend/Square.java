@@ -6,7 +6,7 @@ package backend;
  * @author shichengrao
  *
  */
-public class Square{
+public class Square implements Comparable{
 	
 	private int file;
 	private int rank;
@@ -51,4 +51,29 @@ public class Square{
     public int distanceToOther(Square otherSquare) {
     		return Math.abs(file - otherSquare.getFile()) + Math.abs(rank - otherSquare.getRank());
     }
+    
+    @Override
+    public int hashCode() {
+    		return file + (rank - 1) * 8;
+    }
+    
+	@Override
+	public int compareTo(Object o) {
+		if(! (o instanceof Square)) {
+			return -1;
+		}
+		Square other = (Square) o;
+		if(other.getRank() != rank) {
+			return rank - other.getRank();
+		}
+		return file - other.getFile();
+	}
+    
+	@Override
+	public boolean equals(Object o) {
+		if(! (o instanceof Square)) {
+			return false;
+		}
+		return o.toString().equals(toString());
+	}
 }
