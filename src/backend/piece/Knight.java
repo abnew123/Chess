@@ -1,6 +1,11 @@
 package backend.piece;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import backend.Position;
 import backend.Square;
+import backend.game.Game;
 
 public class Knight extends Piece {
     public Knight(boolean color) {
@@ -15,44 +20,30 @@ public class Knight extends Piece {
         return getColor() ? "N" : "n";
     }
 
-    public Square[] movesFrom(Square square) {
-        Square[] sq = new Square[8];
-        int counter = 0;
-        int rank = square.getRank();
-        int file = square.getFile();
-        int[] ranks = new int[]{ (rank - 2),  (rank - 1),  (rank + 1),  (rank + 2)};
-        int[] files = new int[]{ (file - 2),  (file - 1),  (file + 1),  (file + 2)};
+	@Override
+	public List<Square> possibleMoves(Position position, Square square) {
+		List<Square> squares = new ArrayList<>();
+		int[] verticalOptions = new int[] {2, -2, 2, -2, 1, -1, 1, -1};
+		int[] horizontalOptions = new int[] {1, -1, -1, 1, 2, -2, -2, 2};
+		for(int i = 0; i < verticalOptions.length; i++) {
+			if(squareOnBoard(square.getFile() + horizontalOptions[i], square.getRank() + verticalOptions[i])) {
+				Square test = new Square(square.getFile() + horizontalOptions[i], square.getRank() + verticalOptions[i]);
+				if(!test.equals(square)) {
+					if(!position.pieceOnSquare(test) || (position.pieceOnSquare(test) && position.getPieceOnSquare(test).getColor() != getColor())){
+						squares.add(test);
+					}
+				}
+			}
+			
+		}
+		return squares;
+	}
 
-        if (squareOnBoard(files[0], ranks[1])) {
-            sq[counter++] = new Square(files[0], ranks[1]);
-        }
-        if (squareOnBoard(files[0], ranks[2])) {
-            sq[counter++] = new Square(files[0], ranks[2]);
-        }
-        if (squareOnBoard(files[1], ranks[0])) {
-            sq[counter++] = new Square(files[1], ranks[0]);
-        }
-        if (squareOnBoard(files[1], ranks[3])) {
-            sq[counter++] = new Square(files[1], ranks[3]);
-        }
-        if (squareOnBoard(files[2], ranks[0])) {
-            sq[counter++] = new Square(files[2], ranks[0]);
-        }
-        if (squareOnBoard(files[2], ranks[3])) {
-            sq[counter++] = new Square(files[2], ranks[3]);
-        }
-        if (squareOnBoard(files[3], ranks[1])) {
-            sq[counter++] = new Square(files[3], ranks[1]);
-        }
-        if (squareOnBoard(files[3], ranks[2])) {
-            sq[counter++] = new Square(files[3], ranks[2]);
-        }
+	@Override
+	public List<Square> possibleMovesFull(Game game, Square square) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-        Square[] full = new Square[counter];
-        for (int i = 0; i < counter; i++) {
-            full[i] = sq[i];
-        }
-
-        return full;
-    }
+    
 }
