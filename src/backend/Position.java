@@ -176,4 +176,14 @@ public class Position {
 	public Piece getPieceOnSquare(Square square) {
 		return pieces.get(square);
 	}
+	
+	public boolean kingInCheck(boolean color) {
+		Square opposingKingSquare = getSquaresFromPiece(getKingPiece(color)).get(0);
+		for(Square square: getPieces().keySet()) {
+			if(getPieces().get(square).possibleMoves(this, square).contains(opposingKingSquare)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

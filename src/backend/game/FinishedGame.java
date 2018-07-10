@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import backend.HalfTurn;
+import backend.Position;
 
-public class FinishedGame {
+public class FinishedGame extends Game{
 	private String winner;
 	private List<HalfTurn> moves;
 
@@ -38,6 +39,20 @@ public class FinishedGame {
 			result+= moves.get(i).toString();
 		}
 		return result;
+	}
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void save() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public Position getPosition() {
+		return null;
 	}
 
 }

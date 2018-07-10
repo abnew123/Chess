@@ -6,7 +6,7 @@ import java.util.List;
 import backend.HalfTurn;
 import backend.Position;
 
-public class UnfinishedGame {
+public class UnfinishedGame extends Game{
 	private List<HalfTurn> moves;
 	private Position currentPosition;
 	
@@ -57,5 +57,17 @@ public class UnfinishedGame {
 	
 	public Position getPosition() {
 		return currentPosition;
+	}
+
+	@Override
+	public void load() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void save() {
+		// TODO Auto-generated method stub
+		
 	}
 }
