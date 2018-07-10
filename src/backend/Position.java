@@ -153,7 +153,7 @@ public class Position {
 	public List<Square> getSquaresFromPiece(Piece piece) {
 		List<Square> squares = new ArrayList<>();
 		for(Square square: pieces.keySet()) {
-			if(pieces.get(square).equals(piece)) {
+			if(pieces.get(square).algebraicName().equals(piece.algebraicName())) {
 				squares.add(square);
 			}
 		}

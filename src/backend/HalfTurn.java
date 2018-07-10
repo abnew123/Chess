@@ -98,7 +98,8 @@ public class HalfTurn {
 	}
 	
 	public boolean playable() {
-		//return prePosition.getSquaresFromPiece(piece).contains(source) && Arrays.asList(piece.movesFrom(prePosition, source)).contains(destination);
-		return true;
+		System.out.println(piece.possibleMoves(prePosition,  source));
+		System.out.println(prePosition.getSquaresFromPiece(piece));
+		return prePosition.getSquaresFromPiece(piece).contains(source) && (piece.possibleMoves(prePosition, source)).contains(destination);
 	}
 }
