@@ -31,8 +31,8 @@ public class UnfinishedGame extends Game{
 		return moves;
 	}
 	public String currentFEN() {
-		String result = currentPosition.toFEN();
-		
+		String result = currentPosition.toSimplifiedFEN();
+		//TODO add rest of FEN (like pawn moves, castlin, etc...
 		
 		return result;
 	}
