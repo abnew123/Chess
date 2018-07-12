@@ -27,7 +27,7 @@ public class Position {
 		}
 	}
 	
-	public String toFEN() {
+	public String toSimplifiedFEN() {
 		String result = "";
 		for(int i = 8; i > 0; i--) {
 			result += constructRowForFEN(i);
@@ -109,30 +109,6 @@ public class Position {
 		}
 		pieces.put(ply.initialAndFinalLocation()[1], pieces.remove(ply.initialAndFinalLocation()[0]));
 		
-	}
-	
-	public String toVisibleBoard() {
-		String result = " - - - - - - - - \n";
-		for(int i = 8; i > 0; i--) {
-			result += constructRowForVisibleBoard(i);
-			result += " - - - - - - - - \n";
-		}
-		return result;
-	}
-	
-	private String constructRowForVisibleBoard(int row) {
-		String result = "|";
-		for(int i = 1; i < 9; i++) {
-			if(pieces.keySet().contains(new Square(i,row))) {
-				result+= pieces.get(new Square(i,row)).fenName();
-			}
-			else {
-				result+=" ";
-			}
-			result+="|";
-		}
-		result+= "\n";
-		return result;
 	}
 	
 	public Map<Square, Piece> getPieces(){
