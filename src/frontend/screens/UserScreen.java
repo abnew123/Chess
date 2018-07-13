@@ -64,5 +64,6 @@ public class UserScreen implements Screen {
 	
 	private void loadGame(User user) {
 		//TODO figure out how to specify games to load (by id?)
+		new ReplayScreen(myStage, user);
 	}
 }

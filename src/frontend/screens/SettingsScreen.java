@@ -1,6 +1,7 @@
 package frontend.screens;
 
 import backend.user.User;
+import frontend.buttons.ButtonFactory;
 import frontend.selectors.CosmeticsSelector;
 import frontend.selectors.FunctionalitySelector;
 import javafx.geometry.Insets;
@@ -37,6 +38,8 @@ public class SettingsScreen implements Screen {
 	private void setupContent(User user) {
 		VBox box = new VBox();
 		box.getChildren().addAll(
+				ButtonFactory.makeButton("Back To User Screen", e -> new UserScreen(myStage, user), "image_button"),
+				ButtonFactory.makeButton("Back To Game Screen", e -> new GameScreen(myStage, user), "image_button")
 				);
 		box.setAlignment(Pos.CENTER_LEFT);
 		box.setPadding(new Insets(0, 0, 0, 30));
