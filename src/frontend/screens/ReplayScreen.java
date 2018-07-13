@@ -1,7 +1,6 @@
 package frontend.screens;
 
 import backend.game.FinishedGame;
-import frontend.buttons.GotoSettingsButton;
 import frontend.displays.CapturedPiecesDisplay;
 import frontend.displays.UserDisplay;
 import frontend.views.MoveListView;
@@ -12,7 +11,6 @@ public class ReplayScreen implements Screen {
 	private CapturedPiecesDisplay piecesCapturedByBlack;
 	private ReplayView gameBoard;
 	private MoveListView moveList;
-	private GotoSettingsButton settingsButton;
 	private UserDisplay whiteDisplay;
 	private UserDisplay blackDisplay;
 	private FinishedGame game;
