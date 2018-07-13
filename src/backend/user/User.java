@@ -8,19 +8,24 @@ import backend.game.Game;
 
 public class User {
 	private List<FinishedGame> history;
-	public User() {
+	private String name;
+	public User(String name) {
 		history = new ArrayList<>();
+		this.name = name;
 	}
-	public void loadUser() {
-		//reserved for front end compatibility
-	}
+	
 	public void addGame(FinishedGame game) {
 		history.add(game);
 	}
+	
+	public String getName() {
+		return name;
+	}
+	
 	public String getStats() {
 		String stats = "";
-		stats += "Won: " + history.stream().filter(g->g.getWinner().equals("WHITE")).count();
-		stats += "Drawn: " + history.stream().filter(g->g.getWinner().equals("DRAW")).count();
+		stats += "Won: " + history.stream().filter(g->g.getWinner().equals("WHITE")).count() + "\n";
+		stats += "Drawn: " + history.stream().filter(g->g.getWinner().equals("DRAW")).count() + "\n";
 		stats += "Lost: " + history.stream().filter(g->g.getWinner().equals("BLACK")).count();
 		return stats;
 	}
