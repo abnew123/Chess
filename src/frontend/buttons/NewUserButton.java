@@ -1,5 +1,7 @@
 package frontend.buttons;
 
-public class NewUserButton implements Button {
+import javafx.scene.control.Button;
+
+public class NewUserButton extends Button {
 
 }

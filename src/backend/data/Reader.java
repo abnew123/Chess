@@ -26,7 +26,7 @@ public class Reader {
 	 * @param location -filepath
 	 * @return the list of objects stored at location
 	 */
-	public List<Object> read(String location){
+	public static List<Object> read(String location){
 		XStream xstream = new XStream(new DomDriver());
 		FileReader reader = null;
 		try {

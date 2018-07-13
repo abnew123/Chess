@@ -1,5 +1,7 @@
 package frontend.buttons;
 
-public class LoadGameButton implements Button {
+import javafx.scene.control.Button;
+
+public class LoadGameButton extends Button {
 
 }

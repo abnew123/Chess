@@ -1,5 +1,7 @@
 package frontend.buttons;
 
-public class GotoSettingsButton implements Button {
+import javafx.scene.control.Button;
+
+public class GotoSettingsButton extends Button {
 
 }

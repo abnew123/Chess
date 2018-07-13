@@ -1,0 +1,30 @@
+<object-stream>
+  <backend.user.UserManager>
+    <users>
+      <entry>
+        <string>Andrew</string>
+        <backend.user.User>
+          <history/>
+        </backend.user.User>
+      </entry>
+      <entry>
+        <string>Xiaolan</string>
+        <backend.user.User>
+          <history/>
+        </backend.user.User>
+      </entry>
+      <entry>
+        <string>Kunal</string>
+        <backend.user.User>
+          <history/>
+        </backend.user.User>
+      </entry>
+      <entry>
+        <string>Samson</string>
+        <backend.user.User>
+          <history/>
+        </backend.user.User>
+      </entry>
+    </users>
+  </backend.user.UserManager>
+</object-stream>

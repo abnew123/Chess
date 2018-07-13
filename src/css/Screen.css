@@ -1,0 +1,143 @@
+#start_screen {
+	-fx-background-image: url("/images/silk.png");
+	-fx-background-color: black;
+	-fx-background-repeat: stretch;
+	-fx-background-position: 0 center;
+}
+
+#main_title {
+    -fx-font: 100px Verdana;
+    -fx-fill: linear-gradient(from 0% 0% to 200% 200%, repeat, steelblue 0%, white 50%);
+    -fx-stroke: linear-gradient(from 0% 0% to 200% 200%, repeat, steelblue 0%, white 50%);
+    -fx-stroke-width: 1;
+}
+
+#make_game_title {
+    -fx-font: 30px Verdana;
+    -fx-fill: linear-gradient(from 0% 0% to 200% 200%, repeat, steelblue 0%, white 50%);
+    -fx-stroke: linear-gradient(from 0% 0% to 200% 200%, repeat, steelblue 0%, white 50%);
+    -fx-stroke-width: 1;	
+}
+
+#game_select_screen {
+	-fx-background-image: url("/images/blue.jpg");
+	-fx-background-repeat: stretch;
+	-fx-background-position: 0 center;
+}
+
+#make_game_screen {
+	-fx-background-image: url("/images/gray.jpg");	
+}
+
+.image_button {
+    -fx-font: 48px Verdana;
+    -fx-text-fill: steelblue;
+    -fx-pref-width: 400px;
+    -fx-pref-height: 100px;
+    -fx-background-color: black;
+}
+.image_button:hover {
+	-fx-background-image:none;
+	-fx-border-width: 2px;
+	-fx-border-color: white;
+}
+
+
+.new_game_button{
+    -fx-background-color: 
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        linear-gradient(#20262b, #191d22),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 5,4,3,5;
+    -fx-background-insets: 0,1,2,0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Verdana";
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 16px;
+    -fx-padding: 10 20 10 20;
+    -fx-pref-width: 300px;
+    -fx-pref-height: 200px;
+    
+    
+
+}
+
+.new_game_button:hover{
+  	-fx-spacing: 5px;
+  	-fx-border-color: white, 
+  		linear-gradient(white 0%, #1f2429 20%, #191d22 100%),
+        linear-gradient(#20262b, #191d22),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+	-fx-background-radius: 5,4,3,5;
+	-fx-background-inses: 0 1, 2, 0;
+	
+}
+
+
+.back_button {
+    -fx-background-color: 
+        #090a0c,
+        linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+        linear-gradient(#20262b, #191d22),
+        radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 5,4,3,5;
+    -fx-background-insets: 0,1,2,0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Verdana";
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 18px;
+    -fx-padding: 10 20 10 20;    
+}
+
+.tab_pane {
+	-fx-border-width: 2px;
+	-fx-border-color: #0d2039;
+	-fx-opacity: 0.8;
+}
+
+
+#map_entity_default {
+	-fx-pref-width: 1000;
+	-fx-pref-height: 1000;
+	-fx-background-image: url("/images/tt.jpg");
+}
+
+.default_authoring_label {
+	-fx-font-size: 12pt;
+}
+
+.default_authoring_title {
+	-fx-text-fill: #0000ff;
+	-fx-font-size: 18pt;
+}
+
+.tab_title{
+	-fx-font-size: 12pt;
+	-fx-background-color: #d0d0e1;
+	-fx-border-color: white;
+    -fx-font-family: "Verdana";
+
+}
+
+.save_button{
+    -fx-background-color: linear-gradient(#ff5400, #be1d00);
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: white;
+}
+
+.map_setting_buttons {
+	-fx-background-color: 
+        linear-gradient(#f2f2f2, #d6d6d6),
+        linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+        linear-gradient(#dddddd 0%, #f6f6f6 50%);
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+

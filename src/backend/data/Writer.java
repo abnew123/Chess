@@ -21,30 +21,17 @@ public class Writer {
 	 * @param location
 	 * @param data
 	 */
-	public void write(String location, List<? extends Object> data)  {
+	public static void write(String location, Object data)  {
 		XStream xstream = new XStream(new DomDriver());
 		File file = new File(location);
 		FileWriter writer;
 		try {
 			writer = new FileWriter(file);
 			ObjectOutputStream out = xstream.createObjectOutputStream(writer);
-			for(Object datum: data) {
-				out.writeObject(datum);
-		}
+			out.writeObject(data);
 		out.close();
 		} catch (IOException e) {
 			AlertMaker.makeAlert("IOException", "Could not successfully write to file");
 		}
-	}
-	
-	/**
-	 * writes data to location without overwriting previous data
-	 * @param location
-	 * @param data
-	 */
-	public void writeNoOverwrite(String location, List<Object> data)  {
-		Reader myReader = new Reader();
-		List<Object> prevData= myReader.read(location);
-		data.addAll(prevData);
 	}
 }
