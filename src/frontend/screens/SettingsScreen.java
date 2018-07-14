@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -37,13 +38,15 @@ public class SettingsScreen implements Screen {
 	
 	private void setupContent(User user) {
 		VBox box = new VBox();
-		box.getChildren().addAll(
+		HBox topRow = new HBox();
+		topRow.getChildren().addAll(
 				ButtonFactory.makeButton("Back To User Screen", e -> new UserScreen(myStage, user), "image_button"),
 				ButtonFactory.makeButton("Back To Game Screen", e -> new GameScreen(myStage, user), "image_button")
 				);
 		box.setAlignment(Pos.CENTER_LEFT);
 		box.setPadding(new Insets(0, 0, 0, 30));
 		box.setSpacing(SPACING_SMALL);
+		box.getChildren().add(topRow);
 		myPane.getChildren().add(box);
 	}
 	

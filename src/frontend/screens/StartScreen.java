@@ -53,7 +53,7 @@ public class StartScreen implements Screen {
 		box.getChildren().addAll(
 				new Text(TITLE) {{ setId("main_title"); }},
 				new TextField(),
-				ButtonFactory.makeButton("Add New User", e -> addNewUser(manager, box), "image_button")
+				ButtonFactory.makeButton("Add New User", e -> addNewUser(manager, box), "title_button")
 				);
 		box.getChildren().addAll(manager.makeButtons(myStage));
 		box.setAlignment(Pos.CENTER_LEFT);

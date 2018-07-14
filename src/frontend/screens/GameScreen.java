@@ -6,6 +6,14 @@ import frontend.displays.CapturedPiecesDisplay;
 import frontend.displays.UserDisplay;
 import frontend.views.MoveListView;
 import frontend.views.PlayGameBoardView;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GameScreen implements Screen {
@@ -16,8 +24,29 @@ public class GameScreen implements Screen {
 	private UserDisplay whiteDisplay;
 	private UserDisplay blackDisplay;
 	private UnfinishedGame game;
-	public GameScreen(Stage myStage, User user) {
-		// TODO Auto-generated constructor stub
+	private Stage myStage;
+	private Pane myPane;
+	private Scene myScene;
+	public GameScreen(Stage stage, User user) {
+		myStage = stage;
+		setupScreen();
+		setupStage();
 	}
 	
+	private void setupScreen() {
+		myPane = new StackPane();
+		myPane.setBackground(new Background(new BackgroundFill(DEFAULT_BACKGROUND, null, null)));
+		myPane.setId("make_game_screen");
+		myScene = new Scene(myPane);
+		myScene.getStylesheets().add(STYLE_PATH);
+	}
+	
+	private void setupStage() {
+		myStage.setScene(myScene);
+		myStage.setTitle("Game Screen");
+		myStage.setWidth(INITIAL_SCENE_WIDTH);
+		myStage.setHeight(INITIAL_SCENE_HEIGHT);
+		myStage.setResizable(false);
+		myStage.show();
+	}
 }

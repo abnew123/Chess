@@ -36,13 +36,27 @@
 #default_authoring_title {
     -fx-font: 36px Verdana;
 }
-.image_button {
+.title_button {
     -fx-font: 48px Verdana;
     -fx-text-fill: steelblue;
     -fx-pref-width: 400px;
     -fx-pref-height: 100px;
     -fx-background-color: black;
 }
+
+.title_button:hover {
+    -fx-background-image:none;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+}
+
+.image_button {
+    -fx-font: 24px Verdana;
+    -fx-text-fill: black;
+    -fx-background-color: orange;
+}
+
+
 .image_button:hover {
 	-fx-background-image:none;
 	-fx-border-width: 2px;
