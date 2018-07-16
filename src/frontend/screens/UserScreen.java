@@ -1,8 +1,16 @@
 package frontend.screens;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+import backend.HalfTurn;
+import backend.Position;
+import backend.Square;
+import backend.game.FinishedGame;
+import backend.piece.Knight;
 import backend.user.User;
 import frontend.buttons.ButtonFactory;
 import frontend.displays.StatsDisplay;
@@ -63,7 +71,9 @@ public class UserScreen implements Screen {
 	}
 	
 	private void loadGame(User user) {
-		//TODO figure out how to specify games to load (by id?)
-		new ReplayScreen(myStage, user);
+		List<HalfTurn> moves = new ArrayList<>();
+		moves.add(new HalfTurn(new Knight(true), null, new Square("g1"), new Square("f3"), new Position()));
+		FinishedGame game = new FinishedGame("UNIMPORTANT", moves);
+		new ReplayScreen(myStage, user, game);
 	}
 }
