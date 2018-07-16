@@ -27,6 +27,7 @@
 
 #make_game_screen {
 	-fx-background-image: url("/images/gray.jpg");	
+    -fx-width: 400;
 }
 
 #default_authoring_label {
@@ -39,7 +40,7 @@
 .title_button {
     -fx-font: 48px Verdana;
     -fx-text-fill: steelblue;
-    -fx-pref-width: 400px;
+    -fx-pref-width: 500px;
     -fx-pref-height: 100px;
     -fx-background-color: black;
 }

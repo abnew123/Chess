@@ -30,6 +30,7 @@ public class ReplayScreen implements Screen {
 	private Scene myScene;
 	public ReplayScreen(Stage stage, User user) {
 		myStage = stage;
+		gameBoard = new ReplayView() {{initGrid(0,40);}};
 		setupScreen();
 		setupContent(user);
 		setupStage();
@@ -46,11 +47,10 @@ public class ReplayScreen implements Screen {
 	private void setupContent(User user) {
 		VBox box = new VBox();
 		box.getChildren().addAll(
+				gameBoard
 				);
-		box.setAlignment(Pos.CENTER_LEFT);
-		box.setPadding(new Insets(0, 0, 0, 30));
-		box.setSpacing(SPACING_SMALL);
 		myPane.getChildren().add(box);
+		box.setAlignment(Pos.CENTER_LEFT);
 	}
 	
 	private void setupStage() {

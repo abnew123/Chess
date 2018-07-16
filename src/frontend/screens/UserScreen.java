@@ -42,7 +42,7 @@ public class UserScreen implements Screen {
 		VBox box = new VBox();
 		box.getChildren().addAll(
 				new Text("Welcome " + user.getName()) {{ setId("default_authoring_title"); }},
-				new Text(user.getStats()) {{ setId("default_authoring_label");}},
+				new StatsDisplay(user),
 				ButtonFactory.makeButton("New Game", e-> new GameStartScreen(myStage, user), "image_button"),
 				ButtonFactory.makeButton("Load Game", e -> loadGame(user), "image_button"),
 				ButtonFactory.makeButton("Go To Settings", e -> new SettingsScreen(myStage, user), "image_button")

@@ -6,14 +6,11 @@ import frontend.displays.CapturedPiecesDisplay;
 import frontend.displays.UserDisplay;
 import frontend.views.MoveListView;
 import frontend.views.PlayGameBoardView;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GameScreen implements Screen {

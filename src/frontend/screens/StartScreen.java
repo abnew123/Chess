@@ -2,9 +2,6 @@ package frontend.screens;
 
 import java.util.stream.Collectors;
 
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
-
 import backend.data.Reader;
 import backend.data.Writer;
 import backend.user.UserManager;
@@ -43,16 +40,13 @@ public class StartScreen implements Screen {
 	}
 	
 	private void setupContent() {
-		XStream xstream = new XStream(new DomDriver());
 		VBox box = new VBox();
 		UserManager manager = (UserManager) Reader.read(Resources.getString("USERS_LIST")).get(0);
-		//TODO delete this later
-//		if(manager == null) {
-//			manager = new UserManager();
-//		}
+		TextField newUserEntry = new TextField();
+		newUserEntry.setMaxWidth(500);
 		box.getChildren().addAll(
 				new Text(TITLE) {{ setId("main_title"); }},
-				new TextField(),
+				newUserEntry,
 				ButtonFactory.makeButton("Add New User", e -> addNewUser(manager, box), "title_button")
 				);
 		box.getChildren().addAll(manager.makeButtons(myStage));
@@ -72,7 +66,7 @@ public class StartScreen implements Screen {
 	}
 	
 	private void addNewUser(UserManager manager, VBox box) {
-		//change this to get actual name
+		System.out.println(box.getChildren());
 		String name = box.getChildren().stream().filter(a -> a.getClass().equals((new TextField()).getClass())).map(a -> ((TextField) a).getText()).collect(Collectors.toList()).get(0);
 		manager.createNewUser(name);
 		Writer.write(Resources.getString("USERS_LIST"), manager);
