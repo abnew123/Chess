@@ -3,6 +3,7 @@ package frontend.views;
 import java.util.ArrayList;
 import java.util.List;
 
+import backend.AlertMaker;
 import backend.HalfTurn;
 import backend.Position;
 import backend.Square;
@@ -107,11 +108,24 @@ public class ReplayView extends Group implements View {
 	}
 	public void moveForward() {
 		halfTurnCount++;
-		displayPosition(halfTurnCount);
+		if(halfTurnCount >= positions.size()) {
+			halfTurnCount--;
+			AlertMaker.makeAlert("Error", "Invalid move");
+		}
+		else {
+			displayPosition(halfTurnCount);
+		}
+		
 	}
 	
 	public void moveBackward() {
 		halfTurnCount--;
-		displayPosition(halfTurnCount);
+		if(halfTurnCount < 0) {
+			halfTurnCount++;
+			AlertMaker.makeAlert("Error", "Invalid move");
+		}
+		else {
+			displayPosition(halfTurnCount);
+		}
 	}
 }

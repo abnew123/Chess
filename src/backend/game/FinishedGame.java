@@ -1,18 +1,22 @@
 package backend.game;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import backend.HalfTurn;
-import backend.Position;
 
-public class FinishedGame extends Game{
+public class FinishedGame{
 	private String winner;
 	private List<HalfTurn> moves;
 
 	public FinishedGame(String winner, List<HalfTurn> moves) {
 		this.winner = winner;
 		this.moves = moves;
+	}
+	public FinishedGame(UnfinishedGame game) {
+		this(game.getPGN());
+	}
+	public FinishedGame(String PGN) {
+		//TODO add compatibility to normal games
 	}
 	public String getWinner() {
 		return winner;
@@ -39,20 +43,6 @@ public class FinishedGame extends Game{
 			result+= moves.get(i).toString();
 		}
 		return result;
-	}
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void save() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public Position getPosition() {
-		return null;
 	}
 
 }

@@ -5,7 +5,6 @@ import java.util.List;
 
 import backend.Position;
 import backend.Square;
-import backend.game.Game;
 
 public class Queen extends Piece {
     public Queen(boolean color) {

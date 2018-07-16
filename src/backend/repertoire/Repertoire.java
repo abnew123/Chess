@@ -2,8 +2,6 @@ package backend.repertoire;
 
 import java.util.List;
 
-import backend.HalfTurn;
-
 public abstract class Repertoire {
 	protected List<Repertoire> children;
 	

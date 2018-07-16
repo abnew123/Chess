@@ -1,7 +1,11 @@
 package frontend.views;
 
+import java.util.List;
+
+import backend.HalfTurn;
 import backend.Position;
 import backend.Square;
+import backend.game.UnfinishedGame;
 import backend.piece.Piece;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -11,7 +15,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 /**
  * @author Jennifer Chin
@@ -22,11 +25,13 @@ import javafx.scene.shape.Shape;
 
 public class PlayGameBoardView extends Group implements View {
 	
+	private UnfinishedGame game;
 	private Position position;
 	public static String pieceSet = "classic";
 	private boolean flag = false;
 	private Piece selectedPiece = null;
 	public static final int SQUARE_SIZE = 60;
+	private Square source;
 	/**
 	 * Constructor for a SquareViewer. Takes in a group, that the Polygons will be added to, and a grid, which will be 
 	 * used to determine the color of the Polygons.
@@ -37,6 +42,8 @@ public class PlayGameBoardView extends Group implements View {
 	public PlayGameBoardView(){
 		position = new Position();
 		initGrid();
+		game = new UnfinishedGame();
+		onMouseClick();
 	}
 	
 	/**
@@ -60,7 +67,7 @@ public class PlayGameBoardView extends Group implements View {
 		double xPos = 0;
 		double yPos = 0;
 		boolean flip = true;
-		for (int r = 1; r < 9; r++){
+		for (int r = 8; r >= 1; r--){
 			for (int c = 1; c < 9; c++){
 				Rectangle cellVisual = new Rectangle(xPos, yPos, xStep, yStep);
 				//will be customizable
@@ -92,13 +99,20 @@ public class PlayGameBoardView extends Group implements View {
 				node.setOnMousePressed(new EventHandler<MouseEvent>(){
 					@Override public void handle(MouseEvent e){
 						if(flag) {
-							Square destination = new Square((int)yPos/SQUARE_SIZE, (int)xPos/SQUARE_SIZE);
-							
+							Square destination = new Square(1 + (int)xPos/SQUARE_SIZE, 8 - (int)yPos/SQUARE_SIZE);
+							HalfTurn move = new HalfTurn(selectedPiece, null, source, destination, position);
+							if(game.addPly(move)) {
+								position.update(move);
+								initGrid();
+							}
+							flag = false;
 						}
 						else {
-							Square source = new Square((int)yPos/SQUARE_SIZE, (int)xPos/SQUARE_SIZE);
+							source = new Square(1 + (int)xPos/SQUARE_SIZE, 8 - (int)yPos/SQUARE_SIZE);
 							if(position.getPieceOnSquare(source) != null) {
 								selectedPiece = position.getPieceOnSquare(source);
+								//highlights the squares that the piece can go
+								addHighlights(selectedPiece, source);
 								flag = true;
 							}
 							System.out.println(source);
@@ -109,6 +123,19 @@ public class PlayGameBoardView extends Group implements View {
 				});
 			}
 			
+		}
+	}
+	private void addHighlights(Piece piece, Square source) {
+		List<Square> possibleMoves = piece.possibleMovesFull(game, source);
+		System.out.println(possibleMoves);
+		for(Square possibility: possibleMoves) {
+			ImageView image = new ImageView();
+			image.setFitHeight(SQUARE_SIZE);
+			image.setFitWidth(SQUARE_SIZE);
+			image.setX((possibility.getFile() - 1) * SQUARE_SIZE);
+			image.setY((8 - possibility.getRank())*SQUARE_SIZE);
+			image.setImage(new Image("images/rcd.png"));
+			getChildren().add(image);
 		}
 	}
 }

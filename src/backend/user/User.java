@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import backend.game.FinishedGame;
-import backend.game.Game;
 
 public class User {
 	private List<FinishedGame> history;
