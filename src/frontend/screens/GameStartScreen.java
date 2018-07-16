@@ -1,6 +1,7 @@
 package frontend.screens;
 
 import backend.user.User;
+import frontend.buttons.ButtonFactory;
 import frontend.selectors.AISelector;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -35,6 +36,7 @@ public class GameStartScreen implements Screen {
 	private void setupContent(User user) {
 		VBox box = new VBox();
 		box.getChildren().addAll(
+				ButtonFactory.makeButton("delete this later", e -> new GameScreen(myStage, user),  "image_button")
 				);
 		box.setAlignment(Pos.CENTER_LEFT);
 		box.setPadding(new Insets(0, 0, 0, 30));

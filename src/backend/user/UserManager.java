@@ -30,7 +30,7 @@ public class UserManager {
 	public List<Button> makeButtons(Stage stage){
 		List<Button> buttonList = new ArrayList<>();
 		for(User user: users) {
-			buttonList.add(ButtonFactory.makeButton(user.getName(), e -> new UserScreen(stage, user), "image_button"));
+			buttonList.add(ButtonFactory.makeButton(user.getName(), e -> new UserScreen(stage, user), "title_button"));
 		}
 		return buttonList;
 	}
