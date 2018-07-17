@@ -6,7 +6,6 @@ import java.util.List;
 import backend.HalfTurn;
 import backend.Position;
 import backend.Square;
-import backend.game.Game;
 import backend.game.UnfinishedGame;
 
 public abstract class Piece {
@@ -24,7 +23,7 @@ public abstract class Piece {
 
     public abstract List<Square> possibleMoves(Position position, Square square);
     
-    public List<Square> possibleMovesFull(Game game, Square square){
+    public List<Square> possibleMovesFull(UnfinishedGame game, Square square){
     		List<Square> squaresPossible = possibleMoves(game.getPosition(), square);
     		List<Square> squares = new ArrayList<>();
     		for(Square candidate: squaresPossible) {
@@ -35,6 +34,7 @@ public abstract class Piece {
     				squares.add(candidate);
     			}
     		}
+    		System.out.println(squares);
     		return squares;
     }
 

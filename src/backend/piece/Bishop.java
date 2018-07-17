@@ -5,7 +5,6 @@ import java.util.List;
 
 import backend.Position;
 import backend.Square;
-import backend.game.Game;
 
 public class Bishop extends Piece {
     public Bishop(boolean color) {

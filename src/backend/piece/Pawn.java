@@ -5,7 +5,7 @@ import java.util.List;
 
 import backend.Position;
 import backend.Square;
-import backend.game.Game;
+import backend.game.UnfinishedGame;
 
 public class Pawn extends Piece {
     public Pawn(boolean color) {
@@ -20,27 +20,6 @@ public class Pawn extends Piece {
         return getColor()? "P" : "p";
     }
 
-    public Square[] movesFrom(Square square) {
-        int rank = square.getRank();
-        int file = square.getFile();
-        if (getColor()) {
-            if (rank == '8') {
-                return new Square[0];
-            } else if (rank == '2') {
-                return new Square[]{new Square(file, '4'), new Square(file, '3')};
-            } else {
-                return new Square[]{new Square(file,  (rank + 1))};
-            }
-        } else {
-            if (rank == '1') {
-                return new Square[0];
-            } else if (rank == '7') {
-                return new Square[]{new Square(file, '5'), new Square(file, '6')};
-            } else {
-                return new Square[]{new Square(file,  (rank - 1))};
-            }
-        }
-    }
     /**
      * NOTE: does not include enpassant 
      */
@@ -76,10 +55,5 @@ public class Pawn extends Piece {
 			}
 		}
 		return false;
-	}
-	@Override
-	public List<Square> possibleMovesFull(Game game, Square square) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import backend.HalfTurn;
 import backend.Position;
 
-public class UnfinishedGame extends Game{
+public class UnfinishedGame {
 	private List<HalfTurn> moves;
 	private Position currentPosition;
 	
@@ -15,16 +15,14 @@ public class UnfinishedGame extends Game{
 		currentPosition = new Position();
 	}
 	
-	public void addPly(HalfTurn ply) {
-		if(ply.playable()) {
+	public boolean addPly(HalfTurn ply) {
+		if(ply.playable() && ((moves.size() % 2 == 0) != ply.pieceColor())) {
 			moves.add(ply);
 			currentPosition.update(ply);
+			return true;
 		}
+		return false;
 		
-	}
-	
-	public String getWinner() {
-		return "UNKNOWN";
 	}
 
 	public List<HalfTurn> getTurns() {
@@ -57,17 +55,5 @@ public class UnfinishedGame extends Game{
 	
 	public Position getPosition() {
 		return currentPosition;
-	}
-
-	@Override
-	public void load() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void save() {
-		// TODO Auto-generated method stub
-		
 	}
 }

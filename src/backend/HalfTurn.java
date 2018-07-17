@@ -100,4 +100,8 @@ public class HalfTurn {
 	public boolean playable() {
 		return prePosition.getSquaresFromPiece(piece).contains(source) && (piece.possibleMoves(prePosition, source)).contains(destination);
 	}
+	
+	public boolean pieceColor() {
+		return piece.getColor();
+	}
 }

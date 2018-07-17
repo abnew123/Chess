@@ -34,4 +34,13 @@ public class UserManager {
 		}
 		return buttonList;
 	}
+	
+	public void updateUser(User updatedUser) {
+		for(User user: users) {
+			if(user.getName().equals(updatedUser.getName())) {
+				users.remove(user);
+				users.add(updatedUser);
+			}
+		}
+	}
 }

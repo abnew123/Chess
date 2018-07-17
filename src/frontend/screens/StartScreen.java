@@ -66,7 +66,6 @@ public class StartScreen implements Screen {
 	}
 	
 	private void addNewUser(UserManager manager, VBox box) {
-		System.out.println(box.getChildren());
 		String name = box.getChildren().stream().filter(a -> a.getClass().equals((new TextField()).getClass())).map(a -> ((TextField) a).getText()).collect(Collectors.toList()).get(0);
 		manager.createNewUser(name);
 		Writer.write(Resources.getString("USERS_LIST"), manager);
