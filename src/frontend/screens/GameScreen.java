@@ -29,7 +29,7 @@ public class GameScreen implements Screen {
 	private Scene myScene;
 	public GameScreen(Stage stage, User user) {
 		myStage = stage;
-		gameBoard = new PlayGameBoardView();
+		gameBoard = new PlayGameBoardView(user);
 		setupScreen();
 		setupContent(user);
 		setupStage();

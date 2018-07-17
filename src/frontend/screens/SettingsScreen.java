@@ -1,11 +1,13 @@
 package frontend.screens;
 
+import backend.data.Reader;
+import backend.data.Writer;
 import backend.user.User;
+import backend.user.UserManager;
 import frontend.buttons.ButtonFactory;
-import frontend.selectors.CosmeticsSelector;
-import frontend.selectors.FunctionalitySelector;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -14,10 +16,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import resources.Resources;
 
 public class SettingsScreen implements Screen {
-	private CosmeticsSelector cosmeticsSelector;
-	private FunctionalitySelector functionalitySelector;
 	private Stage myStage;
 	private Pane myPane;
 	private Scene myScene;
@@ -37,6 +38,7 @@ public class SettingsScreen implements Screen {
 	}
 	
 	private void setupContent(User user) {
+		myPane.getChildren().clear();
 		VBox box = new VBox();
 		HBox topRow = new HBox();
 		topRow.getChildren().addAll(
@@ -46,7 +48,19 @@ public class SettingsScreen implements Screen {
 		box.setAlignment(Pos.CENTER_LEFT);
 		box.setPadding(new Insets(0, 0, 0, 30));
 		box.setSpacing(SPACING_SMALL);
-		box.getChildren().add(topRow);
+		HBox cosmeticSelector = user.makeCosmeticSelector();
+		for(Node node: cosmeticSelector.getChildren()) {
+			node.setOnMouseClicked(e -> updateSettings(user));
+		}
+		HBox functionalitySelector = user.makeNonCosmeticSelector();
+		for(Node node: functionalitySelector.getChildren()) {
+			node.setOnMouseClicked(e -> updateSettings(user));
+		}
+		box.getChildren().addAll(
+				topRow,
+				cosmeticSelector,
+				functionalitySelector
+				);
 		myPane.getChildren().add(box);
 	}
 	
@@ -57,5 +71,13 @@ public class SettingsScreen implements Screen {
 		myStage.setHeight(INITIAL_SCENE_HEIGHT);
 		myStage.setResizable(false);
 		myStage.show();
+	}
+	
+	private void updateSettings(User user) {
+		System.out.println(user.getBoard());
+		UserManager manager = (UserManager) Reader.read(Resources.getString("USERS_LIST")).get(0);
+		manager.updateUser(user);
+		Writer.write(Resources.getString("USERS_LIST"), manager);
+		setupContent(user);
 	}
 }

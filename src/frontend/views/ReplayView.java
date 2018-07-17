@@ -6,14 +6,9 @@ import java.util.List;
 import backend.AlertMaker;
 import backend.HalfTurn;
 import backend.Position;
-import backend.Square;
 import backend.game.FinishedGame;
-import backend.piece.Piece;
+import backend.user.User;
 import javafx.scene.Group;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 /**
  * @author Jennifer Chin
@@ -28,6 +23,7 @@ public class ReplayView extends Group implements View {
 	public static String pieceSet = "classic";
 	private int halfTurnCount = 0;
 	public static final int SQUARE_SIZE = 60;
+	private User user;
 	/**
 	 * Constructor for a SquareViewer. Takes in a group, that the Polygons will be added to, and a grid, which will be 
 	 * used to determine the color of the Polygons.
@@ -35,13 +31,14 @@ public class ReplayView extends Group implements View {
 	 * @param grid
 	 */
 
-	public ReplayView(FinishedGame game){
+	public ReplayView(FinishedGame game, User user){
 		positions = new ArrayList<>();
 		positions.add(new Position());
 		for(HalfTurn ply: game.getTurns()) {
 			positions.add((new Position(positions.get(positions.size() - 1)) {{update(ply);}}));
 		}
 		displayPosition(halfTurnCount);
+		this.user = user;
 	}
 	
 	/**
@@ -60,51 +57,14 @@ public class ReplayView extends Group implements View {
 	 */
 
 	public void initGrid() {
-		double xStep = SQUARE_SIZE;
-		double yStep = SQUARE_SIZE;
-		double xPos = 0;
-		double yPos = 0;
-		boolean flip = true;
-		for (int r = 1; r < 9; r++){
-			for (int c = 1; c < 9; c++){
-				Rectangle cellVisual = new Rectangle(xPos, yPos, xStep, yStep);
-				//will be customizable
-				cellVisual.setFill(flip?Color.GREEN:Color.WHITE);
-				flip = !flip;
-				getChildren().add(cellVisual);
-				
-				xPos += xStep;
-			}
-			flip = !flip;
-			yPos += yStep;
-			xPos = 0;
-		}
+		getChildren().clear();
+		getChildren().add(user.makeBoard(SQUARE_SIZE));
 	}
 	
 	private void displayPosition(int halfMoveNumber) {
 		getChildren().clear();
 		initGrid();
-		double xStep = SQUARE_SIZE;
-		double yStep = SQUARE_SIZE;
-		double xPos = 0;
-		double yPos = 0;
-		for (int r = 8; r >= 1; r--){
-			for (int c = 1; c < 9; c++){
-				Piece piece = positions.get(halfMoveNumber).getPieceOnSquare(new Square(c,r));
-				if(piece != null) {
-					ImageView image = new ImageView();
-					image.setFitHeight(yStep);
-					image.setFitWidth(xStep);
-					image.setX(xPos);
-					image.setY(yPos);
-					image.setImage(new Image("images/" + pieceSet + (piece.getColor()?"White":"Black") + piece.getClass().getSimpleName() + ".png"));
-					getChildren().add(image);
-				}
-				xPos += xStep;
-			}
-			yPos += yStep;
-			xPos = 0;
-		}
+		getChildren().add(user.makePieces(SQUARE_SIZE, positions.get(halfMoveNumber)));
 	}
 	public void moveForward() {
 		halfTurnCount++;

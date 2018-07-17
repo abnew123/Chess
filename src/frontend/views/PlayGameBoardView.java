@@ -7,6 +7,7 @@ import backend.Position;
 import backend.Square;
 import backend.game.UnfinishedGame;
 import backend.piece.Piece;
+import backend.user.User;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -27,11 +28,11 @@ public class PlayGameBoardView extends Group implements View {
 	
 	private UnfinishedGame game;
 	private Position position;
-	public static String pieceSet = "classic";
 	private boolean flag = false;
 	private Piece selectedPiece = null;
 	public static final int SQUARE_SIZE = 60;
 	private Square source;
+	private User user;
 	/**
 	 * Constructor for a SquareViewer. Takes in a group, that the Polygons will be added to, and a grid, which will be 
 	 * used to determine the color of the Polygons.
@@ -39,11 +40,13 @@ public class PlayGameBoardView extends Group implements View {
 	 * @param grid
 	 */
 
-	public PlayGameBoardView(){
+	public PlayGameBoardView(User user){
 		position = new Position();
-		initGrid();
 		game = new UnfinishedGame();
 		onMouseClick();
+		this.user = user;
+		initGrid();
+		updatePosition();
 	}
 	
 	/**
@@ -62,34 +65,14 @@ public class PlayGameBoardView extends Group implements View {
 	 */
 
 	public void initGrid() {
-		double xStep = SQUARE_SIZE;
-		double yStep = SQUARE_SIZE;
-		double xPos = 0;
-		double yPos = 0;
-		boolean flip = true;
-		for (int r = 8; r >= 1; r--){
-			for (int c = 1; c < 9; c++){
-				Rectangle cellVisual = new Rectangle(xPos, yPos, xStep, yStep);
-				//will be customizable
-				cellVisual.setFill(flip?Color.GREEN:Color.WHITE);
-				flip = !flip;
-				getChildren().add(cellVisual);
-				Piece piece = position.getPieceOnSquare(new Square(c,r));
-				if(piece != null) {
-					ImageView image = new ImageView();
-					image.setFitHeight(yStep);
-					image.setFitWidth(xStep);
-					image.setX(xPos);
-					image.setY(yPos);
-					image.setImage(new Image("images/" + pieceSet + (piece.getColor()?"White":"Black") + piece.getClass().getSimpleName() + ".png"));
-					getChildren().add(image);
-				}
-				xPos += xStep;
-			}
-			flip = !flip;
-			yPos += yStep;
-			xPos = 0;
-		}
+		getChildren().clear();
+		getChildren().add(user.makeBoard(SQUARE_SIZE));
+	}
+	
+	public void updatePosition() {
+		getChildren().clear();
+		initGrid();
+		getChildren().add(user.makePieces(SQUARE_SIZE, position));
 	}
 	public void onMouseClick() {
 		for(Node node: getChildren()){
@@ -127,7 +110,6 @@ public class PlayGameBoardView extends Group implements View {
 	}
 	private void addHighlights(Piece piece, Square source) {
 		List<Square> possibleMoves = piece.possibleMovesFull(game, source);
-		System.out.println(possibleMoves);
 		for(Square possibility: possibleMoves) {
 			ImageView image = new ImageView();
 			image.setFitHeight(SQUARE_SIZE);
