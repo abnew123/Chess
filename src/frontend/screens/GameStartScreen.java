@@ -2,7 +2,6 @@ package frontend.screens;
 
 import backend.user.User;
 import frontend.buttons.ButtonFactory;
-import frontend.selectors.AISelector;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,7 +13,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GameStartScreen implements Screen {
-	private AISelector AISelector;
 	private Stage myStage;
 	private Pane myPane;
 	private Scene myScene;

@@ -30,7 +30,7 @@ public class ReplayScreen implements Screen {
 	private Scene myScene;
 	public ReplayScreen(Stage stage, User user, FinishedGame game) {
 		myStage = stage;
-		gameBoard = new ReplayView(game);
+		gameBoard = new ReplayView(game, user);
 		setupScreen();
 		setupContent(user);
 		setupStage();

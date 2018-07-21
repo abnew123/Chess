@@ -37,8 +37,9 @@ public class ReplayView extends Group implements View {
 		for(HalfTurn ply: game.getTurns()) {
 			positions.add((new Position(positions.get(positions.size() - 1)) {{update(ply);}}));
 		}
-		displayPosition(halfTurnCount);
 		this.user = user;
+		displayPosition(halfTurnCount);
+
 	}
 	
 	/**
@@ -58,6 +59,8 @@ public class ReplayView extends Group implements View {
 
 	public void initGrid() {
 		getChildren().clear();
+		System.out.println(user);
+		//System.out.println(user.makeBoard(SQUARE_SIZE));
 		getChildren().add(user.makeBoard(SQUARE_SIZE));
 	}
 	
