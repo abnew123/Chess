@@ -1,6 +1,4 @@
-import backend.data.Writer;
-import backend.user.UserManager;
-import resources.Resources;
+import backend.game.FinishedGame;
 
 public class TestMain {
 	public static void main(String[] args) {
@@ -29,9 +27,16 @@ public class TestMain {
 //		rep.addChild(rep2);
 //		System.out.println(rep);
 		
-		String name = "Samson";
-		UserManager manager = new UserManager();
-		manager.createNewUser(name);
-		Writer.write(Resources.getString("USERS_LIST"), manager);
+//		String name = "Samson";
+//		UserManager manager = new UserManager();
+//		manager.createNewUser(name);
+//		Writer.write(Resources.getString("USERS_LIST"), manager);
+		
+		FinishedGame test = new FinishedGame("[Event \"Random chess.com Game\"]\n" + 
+				"[Date \"2011\"]\n" + 
+				"[White \"panandh\"]\n" + 
+				"[Black \"amirpb007\"]\n" + 
+				"\n" + 
+				"1. e4 d5 2. exd5 Nf6 3. Bb5+ c6 4. dxc6 Qb6 5. cxb7+ Qxb5 6. bxc8=Q#");
 	}
 }

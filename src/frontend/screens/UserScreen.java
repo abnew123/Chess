@@ -71,9 +71,12 @@ public class UserScreen implements Screen {
 	}
 	
 	private void loadGame(User user) {
-		List<HalfTurn> moves = new ArrayList<>();
-		moves.add(new HalfTurn(new Knight(true), null, new Square("g1"), new Square("f3"), new Position()));
-		FinishedGame game = new FinishedGame("UNIMPORTANT", moves);
-		new ReplayScreen(myStage, user, game);
+		FinishedGame test = new FinishedGame("[Event \"Random chess.com Game\"]\n" + 
+				"[Date \"2011\"]\n" + 
+				"[White \"panandh\"]\n" + 
+				"[Black \"amirpb007\"]\n" + 
+				"\n" + 
+				"1. e4 d5 2. exd5 Nf6 3. Bb5+ c6 4. dxc6 Qb6 5. cxb7+ Qxb5 6. bxc8=Q#");
+		new ReplayScreen(myStage, user, test);
 	}
 }

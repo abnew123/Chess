@@ -104,10 +104,23 @@ public class Position {
 	}
 	
 	public void update(HalfTurn ply) {
-		if(ply.squarePieceWasCapturedOn() != null) {
-			pieces.remove(ply.squarePieceWasCapturedOn());
+		//TODO handle castling
+		if(ply.castling()) {
+			
+			
+			return;
 		}
-		pieces.put(ply.initialAndFinalLocation()[1], pieces.remove(ply.initialAndFinalLocation()[0]));
+		
+		if(ply.promotion()) {
+			pieces.remove(ply.initialAndFinalLocation()[0]);
+			pieces.put(ply.initialAndFinalLocation()[1], ply.promotedPiece());
+		}
+		else {
+			if(ply.squarePieceWasCapturedOn() != null) {
+				pieces.remove(ply.squarePieceWasCapturedOn());
+			}
+			pieces.put(ply.initialAndFinalLocation()[1], pieces.remove(ply.initialAndFinalLocation()[0]));
+		}
 		
 	}
 	
@@ -126,10 +139,10 @@ public class Position {
 		
 	}
 	
-	public List<Square> getSquaresFromPiece(Piece piece) {
+	public List<Square> getSquaresFromPiece(String algebraicName) {
 		List<Square> squares = new ArrayList<>();
 		for(Square square: pieces.keySet()) {
-			if(pieces.get(square).algebraicName().equals(piece.algebraicName())) {
+			if(pieces.get(square).algebraicName().equals(algebraicName)) {
 				squares.add(square);
 			}
 		}
@@ -154,7 +167,7 @@ public class Position {
 	}
 	
 	public boolean kingInCheck(boolean color) {
-		Square opposingKingSquare = getSquaresFromPiece(getKingPiece(color)).get(0);
+		Square opposingKingSquare = getSquaresFromPiece(getKingPiece(color).algebraicName()).get(0);
 		for(Square square: getPieces().keySet()) {
 			if(getPieces().get(square).possibleMoves(this, square).contains(opposingKingSquare)) {
 				return true;
