@@ -121,8 +121,6 @@ public class User {
 					image.setFitWidth(xStep);
 					image.setX(xPos);
 					image.setY(yPos);
-					System.out.println(pieceSet);
-					System.out.println("images/" + (pieceSet?"classic":"fancy") + (piece.getColor()?"White":"Black") + piece.getClass().getSimpleName() + ".png");
 					image.setImage(new Image("images/" + (pieceSet?"classic":"fancy") + (piece.getColor()?"White":"Black") + piece.getClass().getSimpleName() + ".png"));
 					group.getChildren().add(image);
 				}

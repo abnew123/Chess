@@ -48,7 +48,7 @@ public class FinishedGame{
 						}
 					}
 					else {
-						HalfTurn ply = new HalfTurn(realMoves.get(j), position, j % 2 == 0);
+						HalfTurn ply = new HalfTurn(realMoves.get(j), new Position(position), j % 2 == 0);
 						moves.add(ply);
 						position.update(ply);
 						System.out.println(position.toSimplifiedFEN());
