@@ -121,12 +121,7 @@ public class HalfTurn {
 				return destination;
 			}
 			else {
-				if(piece.getColor()) {
-					return new Square(destination.getFile(), destination.getRank() - 1);
-				}
-				else {
-					return new Square(destination.getFile(), destination.getRank() + 1);
-				}
+				return new Square(destination.getFile(), destination.getRank() + (piece.getColor()? -1:1));
 			}
 		}
 		return null;
