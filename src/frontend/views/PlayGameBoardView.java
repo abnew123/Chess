@@ -98,7 +98,6 @@ public class PlayGameBoardView extends Group implements View {
 								addHighlights(selectedPiece, source);
 								flag = true;
 							}
-							System.out.println(source);
 						}
 						
 							

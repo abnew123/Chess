@@ -104,10 +104,9 @@ public class Position {
 	}
 	
 	public void update(HalfTurn ply) {
-		//TODO handle castling
 		if(ply.castling()) {
-			
-			
+			pieces.put(ply.initialAndFinalLocation()[1], pieces.remove(ply.initialAndFinalLocation()[0]));
+			pieces.put(ply.castledRookDestination()[1], pieces.remove(ply.castledRookDestination()[0]));
 			return;
 		}
 		

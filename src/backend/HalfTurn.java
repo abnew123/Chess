@@ -196,6 +196,24 @@ public class HalfTurn {
 		return(piece.algebraicName().equals("K") && source.distanceToOther(destination) == 2);
 	}
 	
+	public Square[] castledRookDestination() {
+		if(castling()) {
+			if(destination.equals(new Square("g1"))) {
+				return new Square[] {new Square("h1"), new Square("f1")};
+			}
+			if(destination.equals(new Square("g8"))) {
+				return new Square[] {new Square("h8"), new Square("f8")};
+			}
+			if(destination.equals(new Square("c1"))) {
+				return new Square[] {new Square("a1"), new Square("d1")};
+			}
+			if(destination.equals(new Square("c8"))) {
+				return new Square[] {new Square("a8"), new Square("d8")};
+			}
+		}
+		return null;
+	}
+	
 	public boolean promotion() {
 		return promotedPiece != null;
 	}

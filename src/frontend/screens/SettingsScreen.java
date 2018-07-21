@@ -74,7 +74,6 @@ public class SettingsScreen implements Screen {
 	}
 	
 	private void updateSettings(User user) {
-		System.out.println(user.getBoard());
 		UserManager manager = (UserManager) Reader.read(Resources.getString("USERS_LIST")).get(0);
 		manager.updateUser(user);
 		Writer.write(Resources.getString("USERS_LIST"), manager);

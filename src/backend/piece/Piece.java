@@ -34,7 +34,6 @@ public abstract class Piece {
     				squares.add(candidate);
     			}
     		}
-    		System.out.println(squares);
     		return squares;
     }
 
