@@ -59,8 +59,6 @@ public class ReplayView extends Group implements View {
 
 	public void initGrid() {
 		getChildren().clear();
-		System.out.println(user);
-		//System.out.println(user.makeBoard(SQUARE_SIZE));
 		getChildren().add(user.makeBoard(SQUARE_SIZE));
 	}
 	
