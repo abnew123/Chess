@@ -109,7 +109,6 @@ public class Position {
 			pieces.put(ply.castledRookDestination()[1], pieces.remove(ply.castledRookDestination()[0]));
 			return;
 		}
-		
 		if(ply.promotion()) {
 			pieces.remove(ply.initialAndFinalLocation()[0]);
 			pieces.put(ply.initialAndFinalLocation()[1], ply.promotedPiece());
@@ -166,9 +165,15 @@ public class Position {
 	}
 	
 	public boolean kingInCheck(boolean color) {
-		Square opposingKingSquare = getSquaresFromPiece(getKingPiece(color).algebraicName()).get(0);
+		List<Square> kingSquares = getSquaresFromPiece(getKingPiece(color).algebraicName());
+		Square opposingKingSquare = null;
+		for(Square square: kingSquares) {
+			if(getPieceOnSquare(square).getColor() == color) {
+				opposingKingSquare = square;
+			}
+		}
 		for(Square square: getPieces().keySet()) {
-			if(getPieces().get(square).possibleMoves(this, square).contains(opposingKingSquare)) {
+			if(getPieces().get(square).possibleMoves(this, square).contains(opposingKingSquare) && getPieces().get(square).getColor() != color) {
 				return true;
 			}
 		}

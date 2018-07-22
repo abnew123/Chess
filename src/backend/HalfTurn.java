@@ -1,5 +1,8 @@
 package backend;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import backend.piece.Bishop;
 import backend.piece.King;
 import backend.piece.Knight;
@@ -24,7 +27,7 @@ public class HalfTurn {
 	}
 	
 	public HalfTurn(String PGN, Position position, boolean color) {
-		//TODO handle disambiguation
+		//TODO handle enpassant
 		if(PGN.equals("O-O") || PGN.equals("O-O-O")) {
 			piece = new King(color);
 			promotedPiece = null;
@@ -47,20 +50,30 @@ public class HalfTurn {
 					promotedPiece = null;
 				}
 			}
+			List<Square> possibleSources = new ArrayList<>();
 			for(Square square: position.getSquaresFromPiece(piece.algebraicName())) {
-				if(piece.possibleMoves(position, square).contains(destination)) {
-					source = square;
+				if(position.getPieceOnSquare(square).getColor() == color && piece.possibleMovesFull(position, square).contains(destination) ) {
+					possibleSources.add(square);
 				}
 			}
+			if(possibleSources.size() > 1) {
+				System.out.println("disambiugation");
+				System.out.println(PGN + possibleSources);
+				source = disambiguate(PGN, possibleSources);
+			}
+			else {
+				source = possibleSources.get(0);
+			}
+			
 		}
 		prePosition = position;
 	}
 	@Override
 	public String toString() {
-		if(piece.algebraicName().equals("K") && source.distanceToOther(destination) == 3){
+		if(piece.algebraicName().equals("K") && source.distanceToOther(destination) == 3 && source.getRank() == destination.getRank()){
 			return "O-O-O";
 		}
-		if(piece.algebraicName().equals("K") && source.distanceToOther(destination) == 2){
+		if(piece.algebraicName().equals("K") && source.distanceToOther(destination) == 2 && source.getRank() == destination.getRank()){
 			return "O-O";
 		}
 		String pgnCode = "";
@@ -72,6 +85,9 @@ public class HalfTurn {
 			pgnCode+= source.toString().substring(0,1);
 		}
 		if(capture()) {
+			if(piece.algebraicName().equals("")) {
+				pgnCode += (char)('a' - 1 + source.getFile());
+			}
 			pgnCode+="x";
 		}
 		pgnCode+=destination.toString();
@@ -166,22 +182,9 @@ public class HalfTurn {
 	
 	private String clean(String fullPGN) {
 		String partialPGN = new String(fullPGN);
-		if(partialPGN.contains("+") || partialPGN.contains("#")) {
-			partialPGN = partialPGN.substring(0, partialPGN.length() - 1);
-		}
-		if(partialPGN.substring(partialPGN.length() - 1).matches("[A-Z]")) {
-			partialPGN = partialPGN.substring(0, partialPGN.length() - 1);
-		}
-		if(partialPGN.substring(0, 1).matches("[A-Z]")) {
+		partialPGN = strip(partialPGN);
+		if(partialPGN.length() > 3){
 			partialPGN = partialPGN.substring(1);
-		}
-		if(partialPGN.contains("x")) {
-			int location = partialPGN.indexOf("x");
-			partialPGN = partialPGN.substring(0,location) + partialPGN.substring(location + 1);
-		}
-		if(partialPGN.contains("=")) {
-			int location = partialPGN.indexOf("=");
-			partialPGN = partialPGN.substring(0,location) + partialPGN.substring(location + 1);
 		}
 		if(partialPGN.length() == 3){
 			partialPGN = partialPGN.substring(1);
@@ -190,10 +193,12 @@ public class HalfTurn {
 	}
 	
 	public boolean castling() {
-		if(piece.algebraicName().equals("K") && source.distanceToOther(destination) == 3){
-			return true;
+		if(piece.algebraicName().equals("K")) {
+			if(source.getRank() == destination.getRank()) {
+				return source.distanceToOther(destination) == 2 || source.distanceToOther(destination) == 3;
+			}
 		}
-		return(piece.algebraicName().equals("K") && source.distanceToOther(destination) == 2);
+		return false;
 	}
 	
 	public Square[] castledRookDestination() {
@@ -220,5 +225,54 @@ public class HalfTurn {
 	
 	public Piece promotedPiece() {
 		return promotedPiece;
+	}
+	public String strip(String PGN) {
+		String partialPGN = new String(PGN);
+		if(partialPGN.contains("+") || partialPGN.contains("#")) {
+			partialPGN = partialPGN.substring(0, partialPGN.length() - 1);
+		}
+		if(partialPGN.substring(partialPGN.length() - 1).matches("[A-Z]")) {
+			partialPGN = partialPGN.substring(0, partialPGN.length() - 1);
+		}
+		if(partialPGN.substring(0, 1).matches("[A-Z]")) {
+			partialPGN = partialPGN.substring(1);
+		}
+		if(partialPGN.contains("x")) {
+			int location = partialPGN.indexOf("x");
+			partialPGN = partialPGN.substring(0,location) + partialPGN.substring(location + 1);
+		}
+		if(partialPGN.contains("=")) {
+			int location = partialPGN.indexOf("=");
+			partialPGN = partialPGN.substring(0,location) + partialPGN.substring(location + 1);
+		}
+		return partialPGN;
+	}
+	private Square disambiguate(String PGN, List<Square> possibleSources) {
+		String disambiguation = strip(PGN);
+		disambiguation = disambiguation.substring(0, disambiguation.length() - 2);
+		if(disambiguation.length() == 2) {
+			System.out.println("mythical double case");
+			return new Square(disambiguation);
+		}
+		if(disambiguation.matches("[a-h]")) {
+			for(Square square: possibleSources) {
+				if(square.toString().contains(disambiguation)) {
+					return square;
+				}
+			}
+			System.out.println("disambiguation failed");
+			return null;
+		}
+		if(disambiguation.matches("/d")) {
+			for(Square square: possibleSources) {
+				if(square.toString().contains(disambiguation)) {
+					return square;
+				}
+			}
+			System.out.println("disambiguation failed");
+			return null;
+		}
+		System.out.println("wtf" + " " + PGN);
+		return null;
 	}
 }

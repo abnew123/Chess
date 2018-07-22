@@ -108,7 +108,7 @@ public class PlayGameBoardView extends Group implements View {
 		}
 	}
 	private void addHighlights(Piece piece, Square source) {
-		List<Square> possibleMoves = piece.possibleMovesFull(game, source);
+		List<Square> possibleMoves = piece.possibleMovesFull(game.getPosition(), source);
 		for(Square possibility: possibleMoves) {
 			ImageView image = new ImageView();
 			image.setFitHeight(SQUARE_SIZE);

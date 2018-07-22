@@ -32,11 +32,20 @@ public class TestMain {
 //		manager.createNewUser(name);
 //		Writer.write(Resources.getString("USERS_LIST"), manager);
 		
-		FinishedGame test = new FinishedGame("[Event \"Random chess.com Game\"]\n" + 
-				"[Date \"2011\"]\n" + 
-				"[White \"panandh\"]\n" + 
-				"[Black \"amirpb007\"]\n" + 
+		FinishedGame test = new FinishedGame("[Event \"Bled-Zagreb-Belgrade Candidates\"]\n" + 
+				"[Site \"Bled, Zagreb & Belgrade YUG\"]\n" + 
+				"[Date \"1959.10.11\"]\n" + 
+				"[Round \"20\"]\n" + 
+				"[White \"Tal, Mikhail\"]\n" + 
+				"[Black \"Fischer, Robert James\"]\n" + 
+				"[Result \"1-0\"]\n" + 
 				"\n" + 
-				"1. e4 d5 2. exd5 Nf6 3. Bb5+ c6 4. dxc6 Qb6 5. cxb7+ Qxb5 6. bxc8=Q#");
+				"1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Be2 O-O 6. Nf3 e5\n" + 
+				"7. d5 Nbd7 8. Bg5 h6 9. Bh4 a6 10. O-O Qe8 11. Nd2 Nh7 12. b4 Bf6\n" + 
+				"13. Bxf6 Nhxf6 14. Nb3 Qe7 15. Qd2 Kh7 16. Qe3 Ng8 17. c5 f5\n" + 
+				"18. exf5 gxf5 19. f4 exf4 20. Qxf4 dxc5 21. Bd3 cxb4 22. Rae1 Qf6\n" + 
+				"23. Re6 Qxc3 24. Bxf5+ Rxf5 25. Qxf5+ Kh8 26. Rf3 Qb2 27. Re8 Nf6\n" + 
+				"28. Qxf6+ Qxf6 29. Rxf6 Kg7 30. Rff8 Ne7 31. Na5 h5 32. h4 Rb8\n" + 
+				"33. Nc4 b5 34. Ne5 1-0");
 	}
 }
