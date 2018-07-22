@@ -31,6 +31,7 @@ public class ReplayScreen implements Screen {
 	public ReplayScreen(Stage stage, User user, FinishedGame game) {
 		myStage = stage;
 		gameBoard = new ReplayView(game, user);
+		moveList = new MoveListView(game.getPGN());
 		setupScreen();
 		setupContent(user);
 		setupStage();
@@ -45,12 +46,18 @@ public class ReplayScreen implements Screen {
 	}
 	
 	private void setupContent(User user) {
-		VBox box = new VBox();
-		HBox box2 = new HBox();
-		box2.getChildren().addAll(
+		HBox box = new HBox();
+		VBox box2 = new VBox();
+		HBox box3 = new HBox();
+		box3.getChildren().addAll(
 				ButtonFactory.makeButton("Backward One", e -> gameBoard.moveBackward(), "image_button"),
 				ButtonFactory.makeButton("Forward One", e -> gameBoard.moveForward(), "image_button")
 				);
+		box2.getChildren().addAll(
+				moveList,
+				box3
+				);
+		box2.setAlignment(Pos.CENTER);
 		box.getChildren().addAll(
 				gameBoard,
 				box2

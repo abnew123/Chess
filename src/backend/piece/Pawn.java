@@ -20,9 +20,6 @@ public class Pawn extends Piece {
         return getColor()? "P" : "p";
     }
 
-    /**
-     * NOTE: does not include enpassant 
-     */
 	@Override
 	public List<Square> possibleMoves(Position position, Square square) {
 		List<Square> squares = new ArrayList<>();

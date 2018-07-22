@@ -53,7 +53,6 @@ public class FinishedGame{
 						turn = !turn;
 						moves.add(ply);
 						position.update(ply);
-						System.out.println(position.toSimplifiedFEN());
 					}
 					
 				}

@@ -173,9 +173,10 @@ public class Position {
 			}
 		}
 		for(Square square: getPieces().keySet()) {
-			if(getPieces().get(square).possibleMoves(this, square).contains(opposingKingSquare) && getPieces().get(square).getColor() != color) {
+			if(getPieces().get(square).getColor() != color&& getPieces().get(square).possibleMoves(this, square).contains(opposingKingSquare)) {
 				return true;
 			}
+			//set up pawn check situation (can't use possibleMoves since its legal for king to be in front of pawn
 		}
 		return false;
 	}
