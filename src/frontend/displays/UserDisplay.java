@@ -1,5 +1,9 @@
 package frontend.displays;
 
-public class UserDisplay {
+import javafx.scene.text.Text;
 
+public class UserDisplay extends Text{
+	public UserDisplay(String text) {
+		super(text);
+	}
 }

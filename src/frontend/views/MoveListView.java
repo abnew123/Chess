@@ -14,7 +14,6 @@ public class MoveListView extends TitledPane implements View {
 	private ListView<HBox> myInfo;
 	private int movenumber;
 	private String PGN;
-	//TODO highlight current move
 	public MoveListView(String PGN) {
 		this.PGN = PGN;
 		movenumber = 0;
