@@ -57,8 +57,6 @@ public class HalfTurn {
 				}
 			}
 			if(possibleSources.size() > 1) {
-				System.out.println("disambiugation");
-				System.out.println(PGN + possibleSources);
 				source = disambiguate(PGN, possibleSources);
 			}
 			else {

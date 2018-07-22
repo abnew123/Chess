@@ -32,20 +32,19 @@ public class TestMain {
 //		manager.createNewUser(name);
 //		Writer.write(Resources.getString("USERS_LIST"), manager);
 		
-		FinishedGame test = new FinishedGame("[Event \"Bled-Zagreb-Belgrade Candidates\"]\n" + 
-				"[Site \"Bled, Zagreb & Belgrade YUG\"]\n" + 
-				"[Date \"1959.10.11\"]\n" + 
-				"[Round \"20\"]\n" + 
-				"[White \"Tal, Mikhail\"]\n" + 
-				"[Black \"Fischer, Robert James\"]\n" + 
-				"[Result \"1-0\"]\n" + 
+		FinishedGame test = new FinishedGame("[Event \"?\"]\n" + 
+				"[Site \"?\"]\n" + 
+				"[Date \"1904.??.??\"]\n" + 
+				"[Round \"?\"]\n" + 
+				"[White \"Giese\"]\n" + 
+				"[Black \"Alekhine, Alexander A\"]\n" + 
+				"[Result \"0-1\"]\n" + 
+				"[ECO \"C33\"]\n" + 
 				"\n" + 
-				"1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Be2 O-O 6. Nf3 e5\n" + 
-				"7. d5 Nbd7 8. Bg5 h6 9. Bh4 a6 10. O-O Qe8 11. Nd2 Nh7 12. b4 Bf6\n" + 
-				"13. Bxf6 Nhxf6 14. Nb3 Qe7 15. Qd2 Kh7 16. Qe3 Ng8 17. c5 f5\n" + 
-				"18. exf5 gxf5 19. f4 exf4 20. Qxf4 dxc5 21. Bd3 cxb4 22. Rae1 Qf6\n" + 
-				"23. Re6 Qxc3 24. Bxf5+ Rxf5 25. Qxf5+ Kh8 26. Rf3 Qb2 27. Re8 Nf6\n" + 
-				"28. Qxf6+ Qxf6 29. Rxf6 Kg7 30. Rff8 Ne7 31. Na5 h5 32. h4 Rb8\n" + 
-				"33. Nc4 b5 34. Ne5 1-0");
+				"1.e4 e5 2.f4 exf4 3.Bc4 d5 4.Bxd5 Qh4+ 5.Kf1 g5 6.Nc3 Ne7 7.d4 Bg7 8.Nf3 \n" + 
+				"Qh5 9.h4 h6 10.e5 Nbc6 11.Kg1 g4 12.Ne1 Bf5 13.Bxc6+ Nxc6 14.Ne2 Be4 15.\n" + 
+				"Bxf4 Qf5 16.Qd2 O-O-O 17.Ng3 Qh7 18.Qe2 Nxd4 19.Qc4 Bc6 20.c3 Ne6 21.Qf1 \n" + 
+				"h5 22.Bg5 Bxe5 23.Bxd8 Bxg3 24.Bf6 Qe4 25.Nd3 Nf4 26.Rh3 Qe3+ 27.Nf2 Nxh3+\n" + 
+				"28.gxh3 Bh2+ 29.Kxh2 Qf4+ 30.Kg1 Qg3+ 31.Qg2 Qxg2# 0-1");
 	}
 }
