@@ -27,7 +27,7 @@ public class HalfTurn {
 	}
 	
 	public HalfTurn(String PGN, Position position, boolean color) {
-		//TODO handle enpassant
+		prePosition = position;
 		if(PGN.equals("O-O") || PGN.equals("O-O-O")) {
 			piece = new King(color);
 			promotedPiece = null;
@@ -50,12 +50,8 @@ public class HalfTurn {
 					promotedPiece = null;
 				}
 			}
-			List<Square> possibleSources = new ArrayList<>();
-			for(Square square: position.getSquaresFromPiece(piece.algebraicName())) {
-				if(position.getPieceOnSquare(square).getColor() == color && piece.possibleMovesFull(position, square).contains(destination) ) {
-					possibleSources.add(square);
-				}
-			}
+			List<Square> possibleSources = possibleSources();
+			
 			if(possibleSources.size() > 1) {
 				source = disambiguate(PGN, possibleSources);
 			}
@@ -64,7 +60,7 @@ public class HalfTurn {
 			}
 			
 		}
-		prePosition = position;
+
 	}
 	@Override
 	public String toString() {
@@ -77,10 +73,7 @@ public class HalfTurn {
 		String pgnCode = "";
 		pgnCode+= piece.algebraicName();
 		if(needDisambiguation()){
-			//TODO figure out how to disambiguate
-		}
-		if(enpassant()) {
-			pgnCode+= source.toString().substring(0,1);
+			pgnCode += disambiguate();
 		}
 		if(capture()) {
 			if(piece.algebraicName().equals("")) {
@@ -99,7 +92,8 @@ public class HalfTurn {
 	}
 	
 	private boolean needDisambiguation() {
-		return false;
+		List<Square> possibleSources = possibleSources();
+		return possibleSources.size() > 1;
 	}
 	private boolean capture() {
 		return prePosition.pieceOnSquare(destination)|| enpassant();
@@ -273,4 +267,46 @@ public class HalfTurn {
 		System.out.println("wtf" + " " + PGN);
 		return null;
 	}
+	
+	private List<Square> possibleSources(){
+		List<Square> possibleSources = new ArrayList<>();
+		for(Square square: prePosition.getSquaresFromPiece(piece.algebraicName())) {
+			if(prePosition.getPieceOnSquare(square).getColor() == piece.getColor() && piece.possibleMovesFull(prePosition, square).contains(destination) ) {
+				possibleSources.add(square);
+			}
+		}
+		return possibleSources;
+	}
+	
+	private String disambiguate() {
+		List<Square> possibleSources = possibleSources();
+		possibleSources.remove(source);
+		if(checkFile(possibleSources)) {
+			return "" + ((char)('a' - 1 + source.getFile()));
+		}
+		if(checkRank(possibleSources)) {
+			return "" + source.getRank();
+		}
+		return "" + ((char)'a' - 1 + source.getFile()) + source.getRank();
+	}
+	
+	private boolean checkFile(List<Square> possibleSources) {
+		for(Square square: possibleSources) {
+			if(square.getFile() == source.getFile()) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private boolean checkRank(List<Square> possibleSources) {
+		for(Square square: possibleSources) {
+			if(square.getRank() == source.getRank()) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	
 }
