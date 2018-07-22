@@ -58,16 +58,15 @@ public class HalfTurn {
 			else {
 				source = possibleSources.get(0);
 			}
-			
 		}
-
 	}
+	
 	@Override
 	public String toString() {
-		if(piece.algebraicName().equals("K") && source.distanceToOther(destination) == 3 && source.getRank() == destination.getRank()){
+		if(piece.algebraicName().equals("K") && source.getRank() == destination.getRank() && castledRookDestination()[0].distanceToOther(castledRookDestination()[1])==3){
 			return "O-O-O";
 		}
-		if(piece.algebraicName().equals("K") && source.distanceToOther(destination) == 2 && source.getRank() == destination.getRank()){
+		if(piece.algebraicName().equals("K") && source.getRank() == destination.getRank() && castledRookDestination()[0].distanceToOther(castledRookDestination()[1])==3 ){
 			return "O-O";
 		}
 		String pgnCode = "";
@@ -95,6 +94,7 @@ public class HalfTurn {
 		List<Square> possibleSources = possibleSources();
 		return possibleSources.size() > 1;
 	}
+	
 	private boolean capture() {
 		return prePosition.pieceOnSquare(destination)|| enpassant();
 	}
@@ -105,6 +105,7 @@ public class HalfTurn {
 		}
 		return !prePosition.pieceOnSquare(destination);
 	}
+	
 	private boolean check() {
 		Square opposingKingSquare = prePosition.getSquaresFromPiece(prePosition.getKingPiece(!piece.getColor()).algebraicName()).get(0);
 		for(Square square: prePosition.getPieces().keySet()) {
@@ -114,11 +115,13 @@ public class HalfTurn {
 		}
 		return false;
 	}
+	
 	private boolean checkmate() {
 		Position prePositionCopy = new Position(prePosition);
 		prePositionCopy.update(this);
 		return check() && prePositionCopy.containsNoLegalMoves(!piece.getColor());
 	}
+	
 	/**
 	 * if a piece was captured, the square it was captured on is returned
 	 * @return
@@ -218,6 +221,7 @@ public class HalfTurn {
 	public Piece promotedPiece() {
 		return promotedPiece;
 	}
+	
 	public String strip(String PGN) {
 		String partialPGN = new String(PGN);
 		if(partialPGN.contains("+") || partialPGN.contains("#")) {
@@ -239,6 +243,7 @@ public class HalfTurn {
 		}
 		return partialPGN;
 	}
+	
 	private Square disambiguate(String PGN, List<Square> possibleSources) {
 		String disambiguation = strip(PGN);
 		disambiguation = disambiguation.substring(0, disambiguation.length() - 2);
@@ -307,6 +312,5 @@ public class HalfTurn {
 		}
 		return true;
 	}
-	
-	
+		
 }

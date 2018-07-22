@@ -50,8 +50,8 @@ public class ReplayScreen implements Screen {
 		VBox box2 = new VBox();
 		HBox box3 = new HBox();
 		box3.getChildren().addAll(
-				ButtonFactory.makeButton("Backward One", e -> gameBoard.moveBackward(), "image_button"),
-				ButtonFactory.makeButton("Forward One", e -> gameBoard.moveForward(), "image_button")
+				ButtonFactory.makeButton("Backward One", e -> backwards(), "image_button"),
+				ButtonFactory.makeButton("Forward One", e -> forwards(), "image_button")
 				);
 		box2.getChildren().addAll(
 				moveList,
@@ -75,4 +75,13 @@ public class ReplayScreen implements Screen {
 		myStage.show();
 	}
 	
+	private void backwards() {
+		gameBoard.moveBackward();
+		moveList.decrementMove();
+	}
+	
+	private void forwards() {
+		gameBoard.moveForward();
+		moveList.incrementMove();
+	}
 }
