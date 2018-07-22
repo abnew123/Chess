@@ -43,6 +43,15 @@ public class Pawn extends Piece {
 		if(checkEnemyPieceOnSquare(-1, moveDirection, position, square)) {
 			squares.add(new Square(square.getFile() - 1, square.getRank() + moveDirection));
 		}
+		//enpassant
+		if(square.getRank() == (color?5:4)) {
+			if(checkEnemyPieceOnSquare(1, 0, position, square)) {
+				squares.add(new Square(square.getFile() + 1, square.getRank() + moveDirection));
+			}
+			if(checkEnemyPieceOnSquare(-1, 0, position, square)) {
+				squares.add(new Square(square.getFile() - 1, square.getRank() + moveDirection));
+			}
+		}
 		return squares;
 	}
 	private boolean checkEnemyPieceOnSquare(int fileDelta, int rankDelta, Position position, Square square) {

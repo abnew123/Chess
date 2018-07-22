@@ -3,8 +3,8 @@ package backend.game;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import backend.HalfTurn;
 import backend.Position;
@@ -25,16 +25,14 @@ public class FinishedGame{
 		String[] lines = PGN.split("\n");
 		boolean actualMoves = false;
 		Position position = new Position();
+		boolean turn = true;
 		for(int i = 0; i < lines.length; i++) {
 			if(lines[i].length() != 0 && lines[i].substring(0, 1).equals("1")) {
 				actualMoves = true;
 			}
 			if(actualMoves) {
-				List<String> moveList = Arrays.asList(lines[i].split(" "));
-				List<String> realMoves = IntStream.range(0, moveList.size())
-				    .filter(n -> n % 3 != 0)
-				    .mapToObj(moveList::get)
-				    .collect(Collectors.toList());
+				List<String> moveList = Arrays.asList(lines[i].split("\\d+\\."));
+				List<String> realMoves = moveList.stream().flatMap(Pattern.compile(" ") ::splitAsStream).filter(a -> !a.equals("")).collect(Collectors.toList());
 				for(int j = 0; j < realMoves.size(); j++) {
 					if(outcomes.contains(realMoves.get(j))) {
 						if(outcomes.get(0).equals(realMoves.get(j))) {
@@ -48,9 +46,11 @@ public class FinishedGame{
 						}
 					}
 					else {
-						HalfTurn ply = new HalfTurn(realMoves.get(j), new Position(position), j % 2 == 0);
+						HalfTurn ply = new HalfTurn(realMoves.get(j), new Position(position), turn);
+						turn = !turn;
 						moves.add(ply);
 						position.update(ply);
+						System.out.println(position.toSimplifiedFEN());
 					}
 					
 				}

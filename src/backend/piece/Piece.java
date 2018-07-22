@@ -9,7 +9,7 @@ import backend.Square;
 import backend.game.UnfinishedGame;
 
 public abstract class Piece {
-	private boolean color;
+	protected boolean color;
 	public Piece(boolean c) {
 		color = c;
 	}
