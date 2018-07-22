@@ -1,16 +1,14 @@
 package frontend.screens;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
-import backend.HalfTurn;
-import backend.Position;
-import backend.Square;
 import backend.game.FinishedGame;
-import backend.piece.Knight;
 import backend.user.User;
 import frontend.buttons.ButtonFactory;
 import frontend.displays.StatsDisplay;
@@ -22,6 +20,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class UserScreen implements Screen {
@@ -71,20 +70,31 @@ public class UserScreen implements Screen {
 	}
 	
 	private void loadGame(User user) {
-		FinishedGame test = new FinishedGame("[Event \"?\"]\n" + 
-				"[Site \"?\"]\n" + 
-				"[Date \"1904.??.??\"]\n" + 
-				"[Round \"?\"]\n" + 
-				"[White \"Giese\"]\n" + 
-				"[Black \"Alekhine, Alexander A\"]\n" + 
-				"[Result \"0-1\"]\n" + 
-				"[ECO \"C33\"]\n" + 
-				"\n" + 
-				"1.e4 e5 2.f4 exf4 3.Bc4 d5 4.Bxd5 Qh4+ 5.Kf1 g5 6.Nc3 Ne7 7.d4 Bg7 8.Nf3 \n" + 
-				"Qh5 9.h4 h6 10.e5 Nbc6 11.Kg1 g4 12.Ne1 Bf5 13.Bxc6+ Nxc6 14.Ne2 Be4 15.\n" + 
-				"Bxf4 Qf5 16.Qd2 O-O-O 17.Ng3 Qh7 18.Qe2 Nxd4 19.Qc4 Bc6 20.c3 Ne6 21.Qf1 \n" + 
-				"h5 22.Bg5 Bxe5 23.Bxd8 Bxg3 24.Bf6 Qe4 25.Nd3 Nf4 26.Rh3 Qe3+ 27.Nf2 Nxh3+\n" + 
-				"28.gxh3 Bh2+ 29.Kxh2 Qf4+ 30.Kg1 Qg3+ 31.Qg2 Qxg2# 0-1");
+		FileChooser fc = new FileChooser();
+		Stage stage = new Stage();
+		fc.setInitialDirectory(new File("./data/games"));
+		fc.setTitle("Load game");
+		File file = fc.showOpenDialog(stage);
+		if (file == null) {
+			return;
+		}
+		FinishedGame test = new FinishedGame(readFile(file));
 		new ReplayScreen(myStage, user, test);
+	}
+	
+	private String readFile(File file) {
+		String lines = "";
+		String line;
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			while ((line = br.readLine()) != null) {
+				lines += line + "\n";
+			}
+			br.close();
+			return lines;
+		} catch (IOException e) {
+			System.err.print("Could not read file");
+		}
+		return null;
 	}
 }
