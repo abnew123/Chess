@@ -22,7 +22,8 @@ public class FinishedGame{
 	}
 	public FinishedGame(String PGN) {
 		moves = new ArrayList<>();
-		String[] lines = PGN.split("\n");
+		String[] lines = PGN.split("(\\r\\n|\\r|\\n)");
+		System.out.println(Arrays.asList(lines));
 		boolean actualMoves = false;
 		Position position = new Position();
 		boolean turn = true;
@@ -31,8 +32,10 @@ public class FinishedGame{
 				actualMoves = true;
 			}
 			if(actualMoves) {
-				List<String> moveList = Arrays.asList(lines[i].split("\\d+\\."));
-				List<String> realMoves = moveList.stream().flatMap(Pattern.compile(" ") ::splitAsStream).filter(a -> !a.equals("")).collect(Collectors.toList());
+				List<String> moveList = Arrays.asList(lines[i].split("\\d+\\.|\\{.*\\}|\\!|\\?|;.*|\\.+"));
+				List<String> realMoves = moveList.stream().flatMap(
+						Pattern.compile(" ") ::splitAsStream).filter(a -> !a.equals("")).collect(
+								Collectors.toList());
 				for(int j = 0; j < realMoves.size(); j++) {
 					if(outcomes.contains(realMoves.get(j))) {
 						if(outcomes.get(0).equals(realMoves.get(j))) {
