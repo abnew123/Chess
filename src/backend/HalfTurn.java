@@ -63,10 +63,10 @@ public class HalfTurn {
 	
 	@Override
 	public String toString() {
-		if(piece.algebraicName().equals("K") && source.getRank() == destination.getRank() && castledRookDestination()[0].distanceToOther(castledRookDestination()[1])==3){
+		if(piece.algebraicName().equals("K") && castling() && castledRookDestination()[0].distanceToOther(castledRookDestination()[1])==3){
 			return "O-O-O";
 		}
-		if(piece.algebraicName().equals("K") && source.getRank() == destination.getRank() && castledRookDestination()[0].distanceToOther(castledRookDestination()[1])==3 ){
+		if(piece.algebraicName().equals("K") && castling() && castledRookDestination()[0].distanceToOther(castledRookDestination()[1])==3 ){
 			return "O-O";
 		}
 		String pgnCode = "";

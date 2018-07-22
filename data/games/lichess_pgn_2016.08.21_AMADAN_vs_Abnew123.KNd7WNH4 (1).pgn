@@ -1,0 +1,23 @@
+[Event "Daily Bullet Arena"]
+[Site "https://lichess.org/KNd7WNH4"]
+[Date "2016.08.21"]
+[Round "-"]
+[White "AMADAN"]
+[Black "Abnew123"]
+[Result "0-1"]
+[UTCDate "2016.08.21"]
+[UTCTime "16:00:24"]
+[WhiteElo "2499"]
+[BlackElo "1729"]
+[WhiteRatingDiff "-31"]
+[BlackRatingDiff "+24"]
+[Variant "Standard"]
+[TimeControl "60+0"]
+[ECO "C55"]
+[Opening "Italian Game: Two Knights Defense, de Riviere Gambit"]
+[Termination "Time forfeit"]
+[Annotator "lichess.org"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. c3 { C55 Italian Game: Two Knights Defense, de Riviere Gambit } d6 5. d4 Be6 6. d5 Bd7 7. dxc6 Bxc6 8. Nbd2 Be7 9. O-O O-O 10. Re1 Bd7 11. h3 c6 12. a4 d5 13. exd5 cxd5 14. Bb3 e4 15. Nd4 Bc6 16. Nf1 Bc5 17. Bg5 h6 18. Bh4 Re8 19. Ne3 Rc8 20. Ndf5 Bd7 21. Ng3 Bxe3 22. fxe3 a6 23. Bxf6 Qxf6 24. Bxd5 Rcd8 25. Rf1 Bc6 26. Bxf7+ Kxf7 27. Rxf6+ Kxf6 28. Qf1+ Kg6 29. Qf4 Kh7 30. Qf5+ Kg8 31. Qg4 g5 32. h4 Rd2 33. hxg5 hxg5 34. Qxg5+ Kf7 35. Qf5+ Ke7 36. Nxe4 Bxe4 37. Qxe4+ Kd7 { Black wins on time. } 0-1
+
+

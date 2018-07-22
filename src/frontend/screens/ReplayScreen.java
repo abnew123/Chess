@@ -32,6 +32,8 @@ public class ReplayScreen implements Screen {
 		myStage = stage;
 		gameBoard = new ReplayView(game, user);
 		moveList = new MoveListView(game.getPGN());
+		piecesCapturedByWhite = new CapturedPiecesDisplay(true, game);
+		piecesCapturedByBlack = new CapturedPiecesDisplay(false, game);
 		setupScreen();
 		setupContent(user);
 		setupStage();
@@ -49,6 +51,7 @@ public class ReplayScreen implements Screen {
 		HBox box = new HBox();
 		VBox box2 = new VBox();
 		HBox box3 = new HBox();
+		VBox box4 = new VBox();
 		box3.getChildren().addAll(
 				ButtonFactory.makeButton("Backward One", e -> backwards(), "image_button"),
 				ButtonFactory.makeButton("Forward One", e -> forwards(), "image_button")
@@ -58,8 +61,14 @@ public class ReplayScreen implements Screen {
 				box3
 				);
 		box2.setAlignment(Pos.CENTER);
-		box.getChildren().addAll(
+		box4.getChildren().addAll(
+				piecesCapturedByWhite,
 				gameBoard,
+				piecesCapturedByBlack
+				);
+		box4.setAlignment(Pos.CENTER);
+		box.getChildren().addAll(
+				box4,
 				box2
 				);
 		myPane.getChildren().add(box);
@@ -76,12 +85,18 @@ public class ReplayScreen implements Screen {
 	}
 	
 	private void backwards() {
-		gameBoard.moveBackward();
-		moveList.decrementMove();
+		if(gameBoard.moveBackward()){
+			moveList.decrementMove();
+			piecesCapturedByWhite.displayPrevious();
+			piecesCapturedByBlack.displayPrevious();
+		}
 	}
 	
 	private void forwards() {
-		gameBoard.moveForward();
-		moveList.incrementMove();
+		if(gameBoard.moveForward()) {
+			moveList.incrementMove();
+			piecesCapturedByWhite.displayNext();
+			piecesCapturedByBlack.displayNext();
+		}
 	}
 }
