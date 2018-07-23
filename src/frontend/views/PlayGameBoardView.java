@@ -95,7 +95,7 @@ public class PlayGameBoardView extends Group implements View {
 							if(position.getPieceOnSquare(source) != null) {
 								selectedPiece = position.getPieceOnSquare(source);
 								//highlights the squares that the piece can go
-								addHighlights(selectedPiece, source);
+								//addHighlights(selectedPiece, source);
 								flag = true;
 							}
 						}
@@ -107,16 +107,16 @@ public class PlayGameBoardView extends Group implements View {
 			
 		}
 	}
-	private void addHighlights(Piece piece, Square source) {
-		List<Square> possibleMoves = piece.possibleMovesFull(game.getPosition(), source);
-		for(Square possibility: possibleMoves) {
-			ImageView image = new ImageView();
-			image.setFitHeight(SQUARE_SIZE);
-			image.setFitWidth(SQUARE_SIZE);
-			image.setX((possibility.getFile() - 1) * SQUARE_SIZE);
-			image.setY((8 - possibility.getRank())*SQUARE_SIZE);
-			image.setImage(new Image("images/rcd.png"));
-			getChildren().add(image);
-		}
-	}
+//	private void addHighlights(Piece piece, Square source) {
+//		List<Square> possibleMoves = piece.possibleMovesFull(game.getPosition(), source);
+//		for(Square possibility: possibleMoves) {
+//			ImageView image = new ImageView();
+//			image.setFitHeight(SQUARE_SIZE);
+//			image.setFitWidth(SQUARE_SIZE);
+//			image.setX((possibility.getFile() - 1) * SQUARE_SIZE);
+//			image.setY((8 - possibility.getRank())*SQUARE_SIZE);
+//			image.setImage(new Image("images/rcd.png"));
+//			getChildren().add(image);
+//		}
+//	}
 }

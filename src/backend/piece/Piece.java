@@ -6,7 +6,7 @@ import java.util.List;
 import backend.HalfTurn;
 import backend.Position;
 import backend.Square;
-import backend.game.UnfinishedGame;
+import backend.game.Game;
 
 public abstract class Piece {
 	protected boolean color;
@@ -36,7 +36,10 @@ public abstract class Piece {
     		}
     		return squares;
     }
-
+    //to solve castling and en passant stuff
+    public List<Square> possibleMovesGivenGame(Game game, Square square, int moveNumber){
+    		return possibleMovesFull(game.getPosition(moveNumber), square);
+    }
     public boolean squareOnBoard(int file, int rank) {
     		return (file > 0 && file < 9) && (rank > 0 && rank < 9);
     }

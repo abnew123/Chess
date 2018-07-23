@@ -9,13 +9,19 @@ import java.util.stream.Collectors;
 import backend.HalfTurn;
 import backend.Position;
 
-public class FinishedGame{
+public class FinishedGame extends Game{
 	private String winner;
-	private List<HalfTurn> moves;
 	public static List<String> outcomes = new ArrayList<String>() {{add("1-0"); add("1/2-1/2"); add("0-1");}};
 	public FinishedGame(String winner, List<HalfTurn> moves) {
 		this.winner = winner;
 		this.moves = moves;
+		positions = new ArrayList<>();
+		positions.add(new Position());
+		for(HalfTurn move: moves) {
+			Position nextPosition = positions.get(positions.size() - 1);
+			nextPosition.update(move);
+			positions.add(nextPosition);
+		}
 	}
 	public FinishedGame(UnfinishedGame game) {
 		this(game.getPGN());
@@ -64,29 +70,6 @@ public class FinishedGame{
 	}
 	public String getWinner() {
 		return winner;
-	}
-
-	public List<HalfTurn> getTurns() {
-		return moves;
-	}
-	 
-	public String getPGN() {
-		//return moves.stream().map(HalfTurn::toString).collect(Collectors.joining( " " ));
-		String result = "";
-		for(int i = 0; i < moves.size(); i++) {
-			if(i%2 == 0) {
-				if(i!=0) {
-					result +="\n";
-				}
-				result += 1+ (i/2);
-				result+= ". ";
-			}
-			else {
-				result += " ";
-			}
-			result+= moves.get(i).toString();
-		}
-		return result;
 	}
 
 }
