@@ -177,6 +177,7 @@ public class Position {
 				return true;
 			}
 			//set up pawn check situation (can't use possibleMoves since its legal for king to be in front of pawn
+			
 		}
 		return false;
 	}

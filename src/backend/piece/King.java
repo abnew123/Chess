@@ -35,6 +35,10 @@ public class King extends Piece {
 				}
 			}
 		}
+		if(square.getRank() == (getColor()?1:8) && square.getFile() == 5) {
+			squares.add(new Square(3, square.getRank()));
+			squares.add(new Square(7, square.getRank()));
+		}
 		return squares;
 	}
 
