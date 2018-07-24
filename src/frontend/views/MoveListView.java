@@ -53,12 +53,13 @@ public class MoveListView extends TitledPane implements View {
 		myInfo.getItems().setAll(items);
 	}
 	public void incrementMove() {
-		movenumber += (movenumber % 3 == 2)? 2:1;
+		movenumber += ((movenumber + 3) % 3 == 2)? 2:1;
 		update();
 	}
 	public void decrementMove() {
-		movenumber -= (movenumber % 3 == 2)? 1:2;
+		movenumber -= ((movenumber + 3) % 3 == 2)? 1:2;
 		update();
+		System.out.println(movenumber);
 	}
 	private void update() {
 		setUpInfo(PGN);
