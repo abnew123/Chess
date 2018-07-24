@@ -14,9 +14,9 @@ public class MoveListView extends TitledPane implements View {
 	private ListView<HBox> myInfo;
 	private int movenumber;
 	private String PGN;
-	public MoveListView(String PGN) {
+	public MoveListView(String PGN, int movenumber) {
 		this.PGN = PGN;
-		movenumber = 0;
+		this.movenumber = movenumber;
 		myInfo = new ListView<>();
 		setUpInfo(PGN);
 		setContent(myInfo);
@@ -53,12 +53,13 @@ public class MoveListView extends TitledPane implements View {
 		myInfo.getItems().setAll(items);
 	}
 	public void incrementMove() {
-		movenumber += (movenumber % 3 == 2)? 2:1;
+		movenumber += ((movenumber + 3) % 3 == 2)? 2:1;
 		update();
 	}
 	public void decrementMove() {
-		movenumber -= (movenumber % 3 == 2)? 1:2;
+		movenumber -= ((movenumber + 3) % 3 == 2)? 1:2;
 		update();
+		System.out.println(movenumber);
 	}
 	private void update() {
 		setUpInfo(PGN);
