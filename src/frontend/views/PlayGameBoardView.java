@@ -1,7 +1,5 @@
 package frontend.views;
 
-import java.util.List;
-
 import backend.HalfTurn;
 import backend.Position;
 import backend.Square;
@@ -11,18 +9,8 @@ import backend.user.User;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-
-/**
- * @author Jennifer Chin
- * 
- * Implements the Viewer interface. Class created to viewer a square grid. Creates a Rectangle object to represent 
- * each cell of the grid and colors the object accordingly.
- */
 
 public class PlayGameBoardView extends Group implements View {
 	
@@ -33,12 +21,6 @@ public class PlayGameBoardView extends Group implements View {
 	public static final int SQUARE_SIZE = 60;
 	private Square source;
 	private User user;
-	/**
-	 * Constructor for a SquareViewer. Takes in a group, that the Polygons will be added to, and a grid, which will be 
-	 * used to determine the color of the Polygons.
-	 * @param group
-	 * @param grid
-	 */
 
 	public PlayGameBoardView(User user){
 		position = new Position();
@@ -49,21 +31,6 @@ public class PlayGameBoardView extends Group implements View {
 		updatePosition();
 	}
 	
-	/**
-	 * Visualizes a square grid. Takes in the x and y position of the upper left corner of the grid, the grid width, 
-	 * grid height, number of grid rows, and number of column rows. Iterates over the Grid to create a Rectangle for 
-	 * each cell. Uses the parameters to calculate the x and y position of the top left corner of each Rectangle, 
-	 * whose fill is determined by the State of its corresponding Cell in the Grid. All cell visuals are then added 
-	 * to the Group.
-	 * @param x
-	 * @param y
-	 * @param gridWidth
-	 * @param gridHeight
-	 * @param gridRows
-	 * @param gridCols
-	 * @return Group
-	 */
-
 	public void initGrid() {
 		getChildren().clear();
 		getChildren().add(user.makeBoard(SQUARE_SIZE));
@@ -98,13 +65,10 @@ public class PlayGameBoardView extends Group implements View {
 								//addHighlights(selectedPiece, source);
 								flag = true;
 							}
-						}
-						
-							
+						}	
 					}
 				});
 			}
-			
 		}
 	}
 //	private void addHighlights(Piece piece, Square source) {

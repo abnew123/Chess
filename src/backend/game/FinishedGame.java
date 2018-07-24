@@ -37,6 +37,7 @@ public class FinishedGame extends Game{
 				actualMoves = true;
 			}
 			if(actualMoves) {
+				System.out.println(lines[i]);
 				List<String> moveList = Arrays.asList(lines[i].split("\\d+\\.|\\{[^}]*\\}|\\!|\\?|;.*|\\.+"));
 				List<String> realMoves = moveList.stream().flatMap(
 						Pattern.compile(" ") ::splitAsStream).filter(a -> !a.equals("")).collect(

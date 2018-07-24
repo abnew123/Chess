@@ -1,8 +1,6 @@
 package frontend.screens;
 
-import backend.game.UnfinishedGame;
 import backend.user.User;
-import frontend.buttons.ButtonFactory;
 import frontend.displays.CapturedPiecesDisplay;
 import frontend.displays.UserDisplay;
 import frontend.views.MoveListView;
@@ -11,7 +9,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;

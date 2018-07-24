@@ -31,7 +31,7 @@ public class ReplayScreen implements Screen {
 	public ReplayScreen(Stage stage, User user, FinishedGame game) {
 		myStage = stage;
 		gameBoard = new ReplayView(game, user);
-		moveList = new MoveListView(game.getPGN());
+		moveList = new MoveListView(game.getPGN(), 0);
 		piecesCapturedByWhite = new CapturedPiecesDisplay(true, game);
 		piecesCapturedByBlack = new CapturedPiecesDisplay(false, game);
 		setupScreen();

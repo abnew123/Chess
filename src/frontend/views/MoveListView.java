@@ -14,9 +14,9 @@ public class MoveListView extends TitledPane implements View {
 	private ListView<HBox> myInfo;
 	private int movenumber;
 	private String PGN;
-	public MoveListView(String PGN) {
+	public MoveListView(String PGN, int movenumber) {
 		this.PGN = PGN;
-		movenumber = 0;
+		this.movenumber = movenumber;
 		myInfo = new ListView<>();
 		setUpInfo(PGN);
 		setContent(myInfo);

@@ -66,7 +66,7 @@ public class HalfTurn {
 		if(piece.algebraicName().equals("K") && castling() && castledRookDestination()[0].distanceToOther(castledRookDestination()[1])==3){
 			return "O-O-O";
 		}
-		if(piece.algebraicName().equals("K") && castling() && castledRookDestination()[0].distanceToOther(castledRookDestination()[1])==3 ){
+		if(piece.algebraicName().equals("K") && castling() && castledRookDestination()[0].distanceToOther(castledRookDestination()[1])==2 ){
 			return "O-O";
 		}
 		String pgnCode = "";
