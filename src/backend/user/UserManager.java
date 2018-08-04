@@ -8,12 +8,21 @@ import frontend.buttons.ButtonFactory;
 import frontend.screens.UserScreen;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
+/**
+ * models a database for all users
+ * @author shichengrao
+ *
+ */
 public class UserManager {
 	private List<User> users;
 	public UserManager() {
 		users = new ArrayList<>();
 	}
+	/**
+	 * makes a new user if old user with same name does not exist
+	 * @param name
+	 * @return success state of making the new user
+	 */
 	public boolean createNewUser(String name) {
 		for(User user: users) {
 			if(user.getName().equals(name)) {
@@ -23,10 +32,19 @@ public class UserManager {
 		users.add(new User(name));
 		return true;
 	}
+	/**
+	 * returns a user based on its name
+	 * @param name
+	 * @return
+	 */
 	public User getUser(String name) {
 		return users.stream().filter(a -> a.getName().equals(name)).collect(Collectors.toList()).get(0);
 	}
-	
+	/**
+	 * makes a list of buttons, one for each user
+	 * @param stage
+	 * @return
+	 */
 	public List<Button> makeButtons(Stage stage){
 		List<Button> buttonList = new ArrayList<>();
 		for(User user: users) {
@@ -34,7 +52,10 @@ public class UserManager {
 		}
 		return buttonList;
 	}
-	
+	/**
+	 * updates a user
+	 * @param updatedUser
+	 */
 	public void updateUser(User updatedUser) {
 		for(User user: users) {
 			if(user.getName().equals(updatedUser.getName())) {

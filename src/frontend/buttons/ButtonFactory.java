@@ -3,6 +3,11 @@ package frontend.buttons;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+/**
+ * fast way to create buttons
+ * @author shichengrao
+ * code originates for voogasalad project from a CS308 project I was part of 
+ */
 public class ButtonFactory {
 	public static Button makeButton(String text) {
 		Button b = new Button();

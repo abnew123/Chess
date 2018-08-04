@@ -9,7 +9,11 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-
+/**
+ * display element taht maintains a view of all moves played
+ * @author shichengrao
+ *
+ */
 public class MoveListView extends TitledPane implements View {
 	private ListView<HBox> myInfo;
 	private int movenumber;

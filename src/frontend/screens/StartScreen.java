@@ -17,7 +17,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import resources.Resources;
-
+/**
+ * initial screen users will see. Allows for choosing of user or creation of new user
+ * @author shichengrao
+ *
+ */
 public class StartScreen implements Screen {
 	private Stage myStage;
 	private StackPane myPane;

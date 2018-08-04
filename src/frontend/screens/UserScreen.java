@@ -22,7 +22,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+/**
+ * screen after start screen. User can see stats, and can go to various other screens
+ * @author shichengrao
+ *
+ */
 public class UserScreen implements Screen {
 	private StatsDisplay statsDisplay;
 	private Stage myStage;

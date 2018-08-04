@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 import backend.HalfTurn;
 import backend.Position;
-
+/**
+ * represents a currently ongoing chess game
+ * @author shichengrao
+ *
+ */
 public class UnfinishedGame extends Game {
 	
 	public UnfinishedGame() {
@@ -12,7 +16,11 @@ public class UnfinishedGame extends Game {
 		positions = new ArrayList<>();
 		positions.add(new Position());
 	}
-	
+	/**
+	 * updates the game with a move
+	 * @param ply
+	 * @return
+	 */
 	public boolean addPly(HalfTurn ply) {
 		if(ply.playable() && ((moves.size() % 2 == 0) != ply.pieceColor())) {
 			moves.add(ply);
@@ -24,7 +32,10 @@ public class UnfinishedGame extends Game {
 		return false;
 		
 	}
-	
+	/**
+	 * returns full FEN of a position
+	 * @return
+	 */
 	public String currentFEN() {
 		String result = positions.get(positions.size() - 1).toSimplifiedFEN();
 		//TODO add rest of FEN (like pawn moves, castling, etc...)

@@ -12,21 +12,36 @@ import backend.piece.Pawn;
 import backend.piece.Piece;
 import backend.piece.Queen;
 import backend.piece.Rook;
-
+/**
+ * models the game state of a static position in chess
+ * @author shichengrao
+ *
+ */
 public class Position {
 	private Map<Square, Piece> pieces;
+	/**
+	 * initializes a standard initial chess position
+	 */
 	public Position() {
 		pieces = new TreeMap<>();
 		addPieces();
 	}
-	
+	/**
+	 * makes a copy of a position
+	 * two DIFFERENT OBJECTS, same information
+	 * @param position
+	 */
 	public Position(Position position) {
 		pieces = new TreeMap<>();
 		for(Square square: position.getPieces().keySet()) {
 			pieces.put(square, position.getPieces().get(square));
 		}
 	}
-	
+	/**
+	 * returns the part of a position's FEN that can be determined without looking back in time.
+	 * does not include whether castling is allowed or indicator for 50 move draw
+	 * @return
+	 */
 	public String toSimplifiedFEN() {
 		String result = "";
 		for(int i = 8; i > 0; i--) {
@@ -98,11 +113,18 @@ public class Position {
 		}
 		return result;
 	}
-	
+	/**
+	 * checks if a piece exists on given square
+	 * @param square
+	 * @return
+	 */
 	public boolean pieceOnSquare(Square square) {
 		return pieces.keySet().contains(square);
 	}
-	
+	/**
+	 * updates the position with a given ply
+	 * @param ply
+	 */
 	public void update(HalfTurn ply) {
 		if(ply.castling()) {
 			pieces.put(ply.initialAndFinalLocation()[1], pieces.remove(ply.initialAndFinalLocation()[0]));
@@ -121,11 +143,19 @@ public class Position {
 		}
 		
 	}
-	
+	/**
+	 * returns the map of each occupied square to the piece on it
+	 * TODO: is it possible to remove this for better encapsulation?
+	 * @return
+	 */
 	public Map<Square, Piece> getPieces(){
 		return pieces;
 	}
-	
+	/**
+	 * returns the king for given side
+	 * @param color - the color of the king
+	 * @return
+	 */
 	public Piece getKingPiece(boolean color) {
 		for(Piece piece:pieces.values()) {
 			if(piece.algebraicName().equals("K")&& piece.getColor() == color) {
@@ -136,7 +166,11 @@ public class Position {
 		return null;
 		
 	}
-	
+	/**
+	 * given a piece, returns all squares the piece is found on
+	 * @param algebraicName - formal PGN name of the piece (e.g. K for king)
+	 * @return
+	 */
 	public List<Square> getSquaresFromPiece(String algebraicName) {
 		List<Square> squares = new ArrayList<>();
 		for(Square square: pieces.keySet()) {
@@ -159,11 +193,19 @@ public class Position {
 		}
 		return true;
 	}
-	
+	/**
+	 * returns piece on a given square
+	 * @param square
+	 * @return
+	 */
 	public Piece getPieceOnSquare(Square square) {
 		return pieces.get(square);
 	}
-	
+	/**
+	 * returns if the king is in check in the current position
+	 * @param color - color of the king
+	 * @return
+	 */
 	public boolean kingInCheck(boolean color) {
 		List<Square> kingSquares = getSquaresFromPiece(getKingPiece(color).algebraicName());
 		Square opposingKingSquare = null;
@@ -176,7 +218,7 @@ public class Position {
 			if(getPieces().get(square).getColor() != color&& getPieces().get(square).possibleMoves(this, square).contains(opposingKingSquare)) {
 				return true;
 			}
-			//set up pawn check situation (can't use possibleMoves since its legal for king to be in front of pawn
+			//TODO set up pawn check situation (can't use possibleMoves since its legal for king to be in front of pawn
 			
 		}
 		return false;

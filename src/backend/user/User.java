@@ -14,7 +14,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-
+/**
+ * models a user
+ * @author shichengrao
+ *
+ */
 public class User {
 	private List<FinishedGame> history;
 	private String name;
@@ -34,7 +38,10 @@ public class User {
 		pieceSet = true;
 		boardScheme = true;
 	}
-	
+	/**
+	 * adds a game to the user's history
+	 * @param game
+	 */
 	public void addGame(FinishedGame game) {
 		history.add(game);
 	}
@@ -42,7 +49,10 @@ public class User {
 	public String getName() {
 		return name;
 	}
-	
+	/**
+	 * returns the W/D/L statistics for a user
+	 * @return
+	 */
 	public String getStats() {
 		String stats = "";
 		stats += "Won: " + history.stream().filter(g->g.getWinner().equals("WHITE")).count() + "\n";
@@ -106,6 +116,12 @@ public class User {
 		}
 		return group;
 	}
+	/**
+	 * creates a board based on the user's preferences 
+	 * @param size
+	 * @param position
+	 * @return
+	 */
 	public Group makePieces(int size, Position position) {
 		Group group = new Group();
 		double xStep = size;

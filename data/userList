@@ -9,6 +9,14 @@
         <pieceSet>true</pieceSet>
         <boardScheme>true</boardScheme>
       </backend.user.User>
+      <backend.user.User>
+        <history/>
+        <name>The Master</name>
+        <showPossibleMoves>true</showPossibleMoves>
+        <autoQueen>true</autoQueen>
+        <pieceSet>true</pieceSet>
+        <boardScheme>true</boardScheme>
+      </backend.user.User>
     </users>
   </backend.user.UserManager>
 </object-stream>

@@ -6,7 +6,11 @@ import java.util.List;
 import backend.Position;
 import backend.Square;
 import backend.game.UnfinishedGame;
-
+/**
+ * models the pawn chess piece
+ * @author shichengrao
+ *
+ */
 public class Pawn extends Piece {
     public Pawn(boolean color) {
         super(color);

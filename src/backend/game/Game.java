@@ -4,13 +4,26 @@ import java.util.List;
 
 import backend.HalfTurn;
 import backend.Position;
-
+/**
+ * represents a chess game
+ * @author shichengrao
+ *
+ */
 public class Game {
 	protected List<HalfTurn> moves;
 	protected List<Position> positions;
+	/**
+	 * returns all moves in game
+	 * @return
+	 */
 	public List<HalfTurn> getTurns() {
 		return moves;
 	}
+	/**
+	 * returns PGN of game
+	 * TODO add in tags, and winner
+	 * @return
+	 */
 	public String getPGN() {
 		//return moves.stream().map(HalfTurn::toString).collect(Collectors.joining( " " ));
 		String result = "";
@@ -29,7 +42,11 @@ public class Game {
 		}
 		return result;
 	}
-	
+	/**
+	 * gets the position of the game at moveNumber
+	 * @param moveNumber
+	 * @return
+	 */
 	public Position getPosition(int moveNumber) {
 		return positions.get(moveNumber);
 	}

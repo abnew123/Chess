@@ -5,7 +5,11 @@ import java.util.List;
 
 import backend.Position;
 import backend.Square;
-
+/**
+ * models the knight chess piece
+ * @author shichengrao
+ *
+ */
 public class Knight extends Piece {
     public Knight(boolean color) {
         super(color);

@@ -3,7 +3,11 @@ package frontend.screens;
 import javafx.geometry.Insets;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-
+/**
+ * a screen for the project. Displays as a window to the user
+ * @author shichengrao
+ *
+ */
 public interface Screen {
 	public static final String STYLE_PATH = "/css/Screen.css";
 	public static final String IMAGE_PATH = "/images/";
