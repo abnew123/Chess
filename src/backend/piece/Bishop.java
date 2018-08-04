@@ -5,7 +5,11 @@ import java.util.List;
 
 import backend.Position;
 import backend.Square;
-
+/**
+ * models the bishop chess piece
+ * @author shichengrao
+ *
+ */
 public class Bishop extends Piece {
     public Bishop(boolean color) {
         super(color);

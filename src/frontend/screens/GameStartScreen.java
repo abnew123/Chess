@@ -11,7 +11,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+/**
+ * screen to choose various factors of a game prior to starting the game
+ * @author shichengrao
+ *
+ */
 public class GameStartScreen implements Screen {
 	private Stage myStage;
 	private Pane myPane;

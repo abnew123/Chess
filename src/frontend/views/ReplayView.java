@@ -9,7 +9,11 @@ import backend.Position;
 import backend.game.FinishedGame;
 import backend.user.User;
 import javafx.scene.Group;
-
+/**
+ * models the replay game view
+ * @author shichengrao
+ *
+ */
 public class ReplayView extends Group implements View {
 	
 	private List<Position> positions;
@@ -29,7 +33,7 @@ public class ReplayView extends Group implements View {
 
 	}
 
-	public void initGrid() {
+	private void initGrid() {
 		getChildren().clear();
 		getChildren().add(user.makeBoard(SQUARE_SIZE));
 	}

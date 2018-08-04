@@ -10,14 +10,25 @@ import backend.piece.Pawn;
 import backend.piece.Piece;
 import backend.piece.Queen;
 import backend.piece.Rook;
-
+/**
+ * represents a single ply in a chess game
+ * @author shichengrao
+ *
+ */
 public class HalfTurn {
 	private Piece piece;
 	private Piece promotedPiece;
 	private Square source;
 	private Square destination;
 	private Position prePosition;
-	
+	/** 
+	 * default constructor to fill all private instance variables
+	 * @param currentPiece - piece that is moving
+	 * @param promotedPiece - if promotion occurs, piece that the pawn promotes to
+	 * @param source - square from which the piece started
+	 * @param destination - square where the piece ends up
+	 * @param position - position BEFORE the ply occurs
+	 */
 	public HalfTurn(Piece currentPiece, Piece promotedPiece, Square source, Square destination, Position position) {
 		piece = currentPiece;
 		this.promotedPiece = promotedPiece;
@@ -25,7 +36,12 @@ public class HalfTurn {
 		this.destination = destination;
 		prePosition = position;
 	}
-	
+	/**
+	 * constructor used for reading in a move from a Portable Game Notation (PGN)
+	 * @param PGN
+	 * @param position
+	 * @param color
+	 */
 	public HalfTurn(String PGN, Position position, boolean color) {
 		prePosition = position;
 		if(PGN.equals("O-O") || PGN.equals("O-O-O")) {
@@ -60,7 +76,9 @@ public class HalfTurn {
 			}
 		}
 	}
-	
+	/**
+	 * returns the ply as it would appear in PGN notation
+	 */
 	@Override
 	public String toString() {
 		if(piece.algebraicName().equals("K") && castling() && castledRookDestination()[0].distanceToOther(castledRookDestination()[1])==3){
@@ -99,6 +117,10 @@ public class HalfTurn {
 		return prePosition.pieceOnSquare(destination)|| enpassant();
 	}
 	
+	/**
+	 * returns if the move is an enpassant
+	 * @return
+	 */
 	public boolean enpassant() {
 		if(!piece.algebraicName().equals("")||!(source.distanceToOther(destination) == 2) || source.getRank() == 2 || source.getRank() == 7) {
 			return false;
@@ -124,6 +146,7 @@ public class HalfTurn {
 	
 	/**
 	 * if a piece was captured, the square it was captured on is returned
+	 * not always destination due to enpassant
 	 * @return
 	 */
 	public Square squarePieceWasCapturedOn() {
@@ -138,17 +161,34 @@ public class HalfTurn {
 		return null;
 	}
 	
+	/**
+	 * returns the source and destination of the ply
+	 * @return
+	 */
 	public Square[] initialAndFinalLocation() {
 		return new Square[] {source,destination};
 	}
 	
+	/**
+	 * returns if the given combination of instance variables can form a legal move
+	 * TODO: make sure this works (mainly pawn issues)
+	 * @return
+	 */
 	public boolean playable() {
 		return prePosition.getSquaresFromPiece(piece.algebraicName()).contains(source) && (piece.possibleMoves(prePosition, source)).contains(destination);
 	}
 	
+	/**
+	 * returns the color of the piece being moved
+	 * @return
+	 */
 	public boolean pieceColor() {
 		return piece.getColor();
 	}
+	/**
+	 * returns the piece being moved
+	 * @return
+	 */
 	
 	public Piece getPiece() {
 		return piece;
@@ -187,6 +227,10 @@ public class HalfTurn {
 		return partialPGN;
 	}
 	
+	/**
+	 * returns if the move involves castling
+	 * @return
+	 */
 	public boolean castling() {
 		if(piece.algebraicName().equals("K")) {
 			if(source.getRank() == destination.getRank()) {
@@ -196,6 +240,11 @@ public class HalfTurn {
 		return false;
 	}
 	
+	/**
+	 * returns the square that the rook moves if the move involves castling 
+	 * NOT destination, since castling is treated as a king move
+	 * @return
+	 */
 	public Square[] castledRookDestination() {
 		if(castling()) {
 			if(destination.equals(new Square("g1"))) {
@@ -214,15 +263,23 @@ public class HalfTurn {
 		return null;
 	}
 	
+	/**
+	 * returns if the move involves promotion
+	 * @return
+	 */
 	public boolean promotion() {
 		return promotedPiece != null;
 	}
 	
+	/**
+	 * returns the promoted piece if it exists
+	 * @return
+	 */
 	public Piece promotedPiece() {
 		return promotedPiece;
 	}
 	
-	public String strip(String PGN) {
+	private String strip(String PGN) {
 		String partialPGN = new String(PGN);
 		if(partialPGN.contains("+") || partialPGN.contains("#")) {
 			partialPGN = partialPGN.substring(0, partialPGN.length() - 1);

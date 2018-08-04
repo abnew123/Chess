@@ -3,7 +3,11 @@ package backend.repertoire;
 import java.util.ArrayList;
 
 import backend.HalfTurn;
-
+/**
+ * tentative concept for a repertoire
+ * @author shichengrao
+ *
+ */
 public class StringRepertoire extends Repertoire {
 	private String move;
 	

@@ -10,7 +10,11 @@ import backend.piece.Piece;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
-
+/**
+ * displays all captured pieces for a given side
+ * @author shichengrao
+ *
+ */
 public class CapturedPiecesDisplay extends FlowPane{
 	private List<List<Node>> displays;
 	private int moveNumber;

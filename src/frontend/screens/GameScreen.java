@@ -13,7 +13,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+/**
+ * the main screen of the project. This is where chess games are played
+ * @author shichengrao
+ *
+ */
 public class GameScreen implements Screen {
 	private CapturedPiecesDisplay piecesCapturedByWhite;
 	private CapturedPiecesDisplay piecesCapturedByBlack;

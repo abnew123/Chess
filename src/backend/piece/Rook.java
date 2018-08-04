@@ -5,7 +5,11 @@ import java.util.List;
 
 import backend.Position;
 import backend.Square;
-
+/**
+ * models the rook chess piece
+ * @author shichengrao
+ *
+ */
 public class Rook extends Piece {
     public Rook(boolean color) {
         super(color);

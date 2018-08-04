@@ -3,7 +3,11 @@ package main;
 import frontend.screens.StartScreen;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
+/**
+ * engine for the entire application. Opens up to start screen
+ * @author shichengrao
+ *
+ */
 public class Main extends Application {
 
 	@Override

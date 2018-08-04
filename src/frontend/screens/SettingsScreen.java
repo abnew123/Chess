@@ -17,7 +17,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import resources.Resources;
-
+/**
+ * screen for adjusting various settings for the game
+ * @author shichengrao
+ *
+ */
 public class SettingsScreen implements Screen {
 	private Stage myStage;
 	private Pane myPane;

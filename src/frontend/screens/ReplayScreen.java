@@ -16,7 +16,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+/**
+ * screen to allow for viewing replays of already played games
+ * @author shichengrao
+ *
+ */
 public class ReplayScreen implements Screen {
 	
 	private CapturedPiecesDisplay piecesCapturedByWhite;

@@ -41,6 +41,8 @@ public class PlayGameBoardView extends Group implements View {
 		initGrid();
 		getChildren().add(user.makePieces(SQUARE_SIZE, position));
 	}
+	
+	//needs serious overhaul, probably to a completely different idea. Right now its way to precision based to ever be good
 	public void onMouseClick() {
 		for(Node node: getChildren()){
 			if(node.getClass().equals((new Rectangle()).getClass())) {
