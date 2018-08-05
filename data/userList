@@ -3,17 +3,25 @@
     <users>
       <backend.user.User>
         <history/>
-        <name>Samson</name>
-        <showPossibleMoves>false</showPossibleMoves>
-        <autoQueen>false</autoQueen>
+        <name>aa</name>
+        <showPossibleMoves>true</showPossibleMoves>
+        <autoQueen>true</autoQueen>
         <pieceSet>true</pieceSet>
         <boardScheme>true</boardScheme>
       </backend.user.User>
       <backend.user.User>
         <history/>
-        <name>The Master</name>
+        <name>k</name>
         <showPossibleMoves>true</showPossibleMoves>
         <autoQueen>true</autoQueen>
+        <pieceSet>true</pieceSet>
+        <boardScheme>true</boardScheme>
+      </backend.user.User>
+      <backend.user.User>
+        <history/>
+        <name>Samson</name>
+        <showPossibleMoves>false</showPossibleMoves>
+        <autoQueen>false</autoQueen>
         <pieceSet>true</pieceSet>
         <boardScheme>true</boardScheme>
       </backend.user.User>
