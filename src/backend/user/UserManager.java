@@ -57,7 +57,8 @@ public class UserManager {
 	 * @param updatedUser
 	 */
 	public void updateUser(User updatedUser) {
-		for(User user: users) {
+		for(int i = users.size() - 1; i >= 0; i--) {
+			User user = users.get(i);
 			if(user.getName().equals(updatedUser.getName())) {
 				users.remove(user);
 				users.add(updatedUser);
