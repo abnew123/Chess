@@ -48,6 +48,9 @@ public class MoveListView extends TitledPane implements View {
 	}
 	
 	private void setUpInfo(String PGN) {
+		if(PGN.equals("")) {
+			return;
+		}
 		String[] moves = PGN.split(" |\n");
 		List<HBox> items = new ArrayList<>();
 		for(int i = 0; i < moves.length; i+=3) {
@@ -63,7 +66,6 @@ public class MoveListView extends TitledPane implements View {
 	public void decrementMove() {
 		movenumber -= ((movenumber + 3) % 3 == 2)? 1:2;
 		update();
-		System.out.println(movenumber);
 	}
 	private void update() {
 		setUpInfo(PGN);
