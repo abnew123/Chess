@@ -4,7 +4,30 @@
       <backend.user.User>
         <history/>
         <repertoire>
-          <children/>
+          <children>
+            <backend.repertoire.Repertoire>
+              <children>
+                <backend.repertoire.Repertoire>
+                  <children>
+                    <backend.repertoire.Repertoire>
+                      <children/>
+                      <move>Nf3</move>
+                    </backend.repertoire.Repertoire>
+                  </children>
+                  <move>e5</move>
+                </backend.repertoire.Repertoire>
+              </children>
+              <move>e4</move>
+            </backend.repertoire.Repertoire>
+            <backend.repertoire.Repertoire>
+              <children/>
+              <move>d4</move>
+            </backend.repertoire.Repertoire>
+            <backend.repertoire.Repertoire>
+              <children/>
+              <move>c4</move>
+            </backend.repertoire.Repertoire>
+          </children>
           <move></move>
         </repertoire>
         <name>Test</name>
