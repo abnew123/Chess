@@ -33,6 +33,7 @@ public class RepertoireScreen implements Screen {
 	private String PGN;
 	private Repertoire myRepertoire;
 	public RepertoireScreen(Stage stage, User user, Repertoire currentrep, List<String> moves) {
+		System.out.println(moves);
 		myStage = stage;
 		myRepertoire = currentrep;
 		getPGN(moves);
