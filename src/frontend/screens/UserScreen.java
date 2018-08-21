@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -49,14 +50,14 @@ public class UserScreen implements Screen {
 	}
 	
 	private void setupContent(User user) {
-		XStream xstream = new XStream(new DomDriver());
 		VBox box = new VBox();
 		box.getChildren().addAll(
 				new Text("Welcome " + user.getName()) {{ setId("default_authoring_title"); }},
 				new StatsDisplay(user),
 				ButtonFactory.makeButton("New Game", e-> new GameStartScreen(myStage, user), "image_button"),
 				ButtonFactory.makeButton("Load Game", e -> loadGame(user), "image_button"),
-				ButtonFactory.makeButton("Go To Settings", e -> new SettingsScreen(myStage, user), "image_button")
+				ButtonFactory.makeButton("Go To Settings", e -> new SettingsScreen(myStage, user), "image_button"),
+				ButtonFactory.makeButton("Review and Edit Repertoire", e-> new RepertoireScreen(myStage, user, user.getRepertoire(), new ArrayList<>()), "image_button")
 				);
 		box.setAlignment(Pos.CENTER_LEFT);
 		box.setPadding(new Insets(0, 0, 0, 30));
@@ -82,8 +83,8 @@ public class UserScreen implements Screen {
 		if (file == null) {
 			return;
 		}
-		FinishedGame test = new FinishedGame(readFile(file));
-		new ReplayScreen(myStage, user, test);
+		FinishedGame game = new FinishedGame(readFile(file));
+		new ReplayScreen(myStage, user, game);
 	}
 	
 	private String readFile(File file) {

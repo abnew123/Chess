@@ -7,6 +7,7 @@ import backend.Position;
 import backend.Square;
 import backend.game.FinishedGame;
 import backend.piece.Piece;
+import backend.repertoire.Repertoire;
 import frontend.buttons.ButtonFactory;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
@@ -21,6 +22,7 @@ import javafx.scene.shape.Rectangle;
  */
 public class User {
 	private List<FinishedGame> history;
+	private Repertoire repertoire;
 	private String name;
 	//non-cosmetic 
 	private boolean showPossibleMoves;
@@ -32,6 +34,7 @@ public class User {
 	private boolean boardScheme;
 	public User(String name) {
 		history = new ArrayList<>();
+		repertoire = new Repertoire("");
 		this.name = name;
 		showPossibleMoves = true;
 		autoQueen = true;
@@ -150,5 +153,9 @@ public class User {
 	
 	public boolean getBoard() {
 		return boardScheme;
+	}
+	
+	public Repertoire getRepertoire() {
+		return repertoire;
 	}
 }

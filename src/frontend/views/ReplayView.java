@@ -8,6 +8,7 @@ import backend.HalfTurn;
 import backend.Position;
 import backend.game.FinishedGame;
 import backend.user.User;
+import frontend.displays.CapturedPiecesDisplay;
 import javafx.scene.Group;
 /**
  * models the replay game view
@@ -71,7 +72,12 @@ public class ReplayView extends Group implements View {
 		}
 	}
 	
-	public Position getCurrentPosition() {
-		return positions.get(halfTurnCount);
+	public void goToEnd(MoveListView moveList, CapturedPiecesDisplay white, CapturedPiecesDisplay black) {
+		while(halfTurnCount < positions.size() - 1) {
+			moveForward();
+			moveList.incrementMove();
+			white.displayNext();
+			black.displayNext();
+		}
 	}
 }
