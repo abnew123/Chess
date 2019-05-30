@@ -99,7 +99,13 @@ public class Position {
 					result += emptycounter;
 					emptycounter = 0;
 				}
-				result+= pieces.get(new Square(i,row)).fenName();
+				if(pieces.get(new Square(i,row)) == null) {
+					result+="*";
+				}
+				else {
+					result+= pieces.get(new Square(i,row)).fenName();
+				}
+				
 			}
 			else {
 				emptycounter++;
@@ -139,6 +145,7 @@ public class Position {
 			if(ply.squarePieceWasCapturedOn() != null) {
 				pieces.remove(ply.squarePieceWasCapturedOn());
 			}
+			
 			pieces.put(ply.initialAndFinalLocation()[1], pieces.remove(ply.initialAndFinalLocation()[0]));
 		}
 		
@@ -180,6 +187,7 @@ public class Position {
 		}
 		return squares;
 	}
+	
 	/**
 	 * checks that one side (specified by color) has not legal moves left
 	 * @param color

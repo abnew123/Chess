@@ -16,7 +16,7 @@ import backend.Position;
  */
 public class FinishedGame extends Game{
 	private String winner;
-	public static List<String> outcomes = new ArrayList<String>() {{add("1-0"); add("1/2-1/2"); add("0-1");}};
+	public static List<String> outcomes = new ArrayList<String>() {{add("1-0"); add("1/2-1/2"); add("0-1"); add("*");}};
 	/**
 	 * constructs a game from a list of moves and the winner.
 	 * @param winner
@@ -58,7 +58,7 @@ public class FinishedGame extends Game{
 				actualMoves = true;
 			}
 			if(actualMoves) {
-				//the next two lines normalize and separate the moves in a PGN, strips off either type of comment, and removes the most common annotation glyps of ? and !
+				//the next two lines normalize and separate the moves in a PGN, strips off either type of comment, and removes the most common annotation glyphs of ? and !
 				List<String> moveList = Arrays.asList(lines[i].split("\\d+\\.|\\{[^}]*\\}|\\!|\\?|;.*|\\.+"));
 				List<String> realMoves = moveList.stream().flatMap(
 						Pattern.compile(" ") ::splitAsStream).filter(a -> !a.equals("")).collect(
@@ -74,9 +74,15 @@ public class FinishedGame extends Game{
 						if(outcomes.get(2).equals(realMoves.get(j))) {
 							winner = "BLACK";
 						}
+						else {
+							winner = "UNKNOWN";
+						}
 					}
 					else {
+						System.out.println(j);
+						System.out.println(realMoves.get(j));
 						HalfTurn ply = new HalfTurn(realMoves.get(j), new Position(position), turn);
+						System.out.println(ply.check());
 						turn = !turn;
 						moves.add(ply);
 						position.update(ply);

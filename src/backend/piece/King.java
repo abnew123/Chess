@@ -2,6 +2,7 @@ package backend.piece;
 import java.util.ArrayList;
 import java.util.List;
 
+import backend.HalfTurn;
 import backend.Position;
 import backend.Square;
 /**
@@ -21,7 +22,30 @@ public class King extends Piece {
     public String fenName() {
         return getColor() ? "K" : "k";
     }
-
+    //Overridden due to castling being a special move
+    @Override 
+    public List<Square> possibleMovesFull(Position position, Square square){
+		List<Square> squaresPossible = possibleMoves(position, square);
+		
+		List<Square> squares = new ArrayList<>();
+		for(Square candidate: squaresPossible) {
+			Position copyOfGamePosition = new Position(position);
+			HalfTurn attemptedMove = new HalfTurn(copyOfGamePosition.getPieceOnSquare(square), null, square, candidate, copyOfGamePosition);
+			//pre-checks if castling is even possible (since can't check legality of castling without rook
+			if(square.getRank() == candidate.getRank() && square.distanceToOther(candidate) == 2) {
+				if(position.pieceOnSquare(attemptedMove.castledRookDestination()[0]) && position.getPieceOnSquare((attemptedMove.castledRookDestination()[0])).algebraicName().equals("K") ) {
+					
+				}
+				continue;
+			}
+			//override in Pawn class
+			copyOfGamePosition.update(attemptedMove);
+			if(!copyOfGamePosition.kingInCheck(color)) {
+				squares.add(candidate);
+			}
+		}
+		return squares;
+}
 	@Override
 	public List<Square> possibleMoves(Position position, Square square) {
 		List<Square> squares = new ArrayList<>();
