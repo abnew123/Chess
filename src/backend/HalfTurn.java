@@ -146,7 +146,7 @@ public class HalfTurn {
 		copyOfGamePosition.update(this);
 		return copyOfGamePosition.kingInCheck(!piece.getColor());
 	}
-
+	//TODO make checkmate work
 	private boolean checkmate() {
 		Position prePositionCopy = new Position(prePosition);
 		prePositionCopy.update(this);

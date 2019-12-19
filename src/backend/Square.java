@@ -1,8 +1,8 @@
 package backend;
 
 /**
- * class to represent a single square on a chessboard IMPORTANT: ranks and files
- * are NOT 0 indexed, but 1 indexed in accordance with common chess nomenclature
+ * Class to represent a single square on a chessboard 
+ * IMPORTANT: ranks and files are NOT 0 indexed, but 1 indexed in accordance with common chess nomenclature
  * 
  * @author shichengrao
  *

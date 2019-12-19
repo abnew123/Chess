@@ -19,10 +19,10 @@ public class UnfinishedGame extends Game {
 	/**
 	 * updates the game with a move
 	 * @param ply
-	 * @return
+	 * @return true if successful
 	 */
 	public boolean addPly(HalfTurn ply) {
-		if(ply.playable() && ((moves.size() % 2 == 0) != ply.pieceColor())) {
+		if(ply.playable() && ((moves.size() % 2 == 0) == ply.pieceColor())) {
 			moves.add(ply);
 			Position currentPosition = new Position(positions.get(positions.size() - 1));
 			currentPosition.update(ply);
@@ -33,8 +33,7 @@ public class UnfinishedGame extends Game {
 		
 	}
 	/**
-	 * returns full FEN of a position
-	 * @return
+	 * @return full FEN of a position
 	 */
 	public String currentFEN() {
 		String result = positions.get(positions.size() - 1).toSimplifiedFEN();

@@ -12,6 +12,8 @@ import backend.game.Game;
  * @author shichengrao
  *
  */
+
+//TODO: add abstract ToString that says something like "piece on square"
 public abstract class Piece {
 	protected boolean color;
 	public Piece(boolean c) {
