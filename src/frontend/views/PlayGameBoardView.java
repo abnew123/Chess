@@ -25,7 +25,6 @@ public class PlayGameBoardView extends Group implements View {
 	public PlayGameBoardView(User user){
 		position = new Position();
 		game = new UnfinishedGame();
-		
 		this.user = user;
 		initGrid();
 		updatePosition();
@@ -44,10 +43,10 @@ public class PlayGameBoardView extends Group implements View {
 		initGrid();
 		getChildren().add(user.makePieces(SQUARE_SIZE, position));
 	}
-	
-	// works when clicking top left corner. need to do better.
+	// moves work correctly. Might want to implement board flip
 	public void onMouseClick() {
 		for(Node n: getChildren()){
+			//gets the board node, vs the pieces node
 			if(((Group)n).getChildren().size() == 64){
 				for(Node node: ((Group)n).getChildren()) {
 					if(node.getClass().equals((new Rectangle()).getClass())) {
@@ -55,6 +54,9 @@ public class PlayGameBoardView extends Group implements View {
 						double yPos = node.getBoundsInLocal().getMinY();
 						node.setOnMousePressed(new EventHandler<MouseEvent>(){
 							@Override public void handle(MouseEvent e){
+								System.out.println(node.getBoundsInLocal().getMinX());
+								System.out.println(node.getBoundsInLocal().getMinY());
+								System.out.println(node);
 								if(flag) {
 									Square destination = new Square(1 + (int)xPos/SQUARE_SIZE, 8 - (int)yPos/SQUARE_SIZE);
 									HalfTurn move = new HalfTurn(selectedPiece, null, source, destination, position);
@@ -81,6 +83,10 @@ public class PlayGameBoardView extends Group implements View {
 					}
 				}
 				}
+			else {
+				//this allows for clicking on pieces, and the underlying square still being selected.
+				n.setDisable(true);
+			}
 			}
 			
 	}
