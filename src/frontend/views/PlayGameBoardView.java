@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class PlayGameBoardView extends Group implements View {
@@ -54,27 +55,24 @@ public class PlayGameBoardView extends Group implements View {
 						double yPos = node.getBoundsInLocal().getMinY();
 						node.setOnMousePressed(new EventHandler<MouseEvent>(){
 							@Override public void handle(MouseEvent e){
-								System.out.println(node.getBoundsInLocal().getMinX());
-								System.out.println(node.getBoundsInLocal().getMinY());
-								System.out.println(node);
 								if(flag) {
 									Square destination = new Square(1 + (int)xPos/SQUARE_SIZE, 8 - (int)yPos/SQUARE_SIZE);
 									HalfTurn move = new HalfTurn(selectedPiece, null, source, destination, position);
 									if(game.addPly(move)) {
 										position.update(move);
-										initGrid();
-										updatePosition();
-										onMouseClick();
 									}
+									//TODO: if checkmate: do something (at least store game as finished game. Maybe some popup?
+									updatePosition();
+									onMouseClick();
 									flag = false;
 								}
 								else {
 									source = new Square(1 + (int)xPos/SQUARE_SIZE, 8 - (int)yPos/SQUARE_SIZE);
-									System.out.println(position.getPieceOnSquare(source));
+									System.out.println(position.getPieceOnSquare(source) + " on " + source);
 									if(position.getPieceOnSquare(source) != null) {
 										selectedPiece = position.getPieceOnSquare(source);
-										//highlights the squares that the piece can go
-										//addHighlights(selectedPiece, source);
+										//highlights chosen piece
+										((Rectangle)node).setFill(Color.YELLOW);
 										flag = true;
 									}
 								}	

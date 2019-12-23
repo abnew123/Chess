@@ -170,6 +170,7 @@ public class Position {
 			}
 		}
 		//should never be reached
+		System.out.println("There's no king. Something's probably wrong");
 		return null;
 		
 	}

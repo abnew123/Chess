@@ -10,10 +10,9 @@ import backend.game.Game;
 /**
  * models a piece in chess
  * @author shichengrao
- *
+ *TODO: consider adding booleans to rook, king, and pawn (can castle for rook + king, can be taken enpassant for pawn)
  */
 
-//TODO: add abstract ToString that says something like "piece on square"
 public abstract class Piece {
 	protected boolean color;
 	public Piece(boolean c) {
@@ -77,5 +76,10 @@ public abstract class Piece {
     public boolean squareOnBoard(int file, int rank) {
     		return (file > 0 && file < 9) && (rank > 0 && rank < 9);
     }
+    
+    @Override
+    public String toString() {
+    		return getClass().getSimpleName();
+    }	
 
 }

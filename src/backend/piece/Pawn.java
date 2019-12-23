@@ -58,9 +58,9 @@ public class Pawn extends Piece {
 				}
 			}
 			if (checkEnemyPieceOnSquare(-1, 0, position, square)) {
-				Square test = new Square(square.getFile() + 1, square.getRank() + moveDirection);
+				Square test = new Square(square.getFile() - 1, square.getRank() + moveDirection);
 				if (!position.pieceOnSquare(test)) {
-					squares.add(new Square(square.getFile() + 1, square.getRank() + moveDirection));
+					squares.add(new Square(square.getFile() - 1, square.getRank() + moveDirection));
 				}
 			}
 		}

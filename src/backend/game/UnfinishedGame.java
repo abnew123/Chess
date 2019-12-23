@@ -22,10 +22,15 @@ public class UnfinishedGame extends Game {
 	 * @return true if successful
 	 */
 	public boolean addPly(HalfTurn ply) {
+		//currently only check that piece is of right color and can move to square.
+		//TODO: check full playability (is king in check after move?)
 		if(ply.playable() && ((moves.size() % 2 == 0) == ply.pieceColor())) {
-			moves.add(ply);
 			Position currentPosition = new Position(positions.get(positions.size() - 1));
 			currentPosition.update(ply);
+			if(currentPosition.kingInCheck(moves.size() % 2 == 0)) {
+				return false;
+			}
+			moves.add(ply);
 			positions.add(currentPosition);
 			return true;
 		}
