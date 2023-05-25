@@ -70,3 +70,4 @@ Frontend:
 * Menu (With save/load/etc… buttons)
 * Displays (for timer, pgn/fen)
 
+To compile, follow https://javabook.bloomu.edu/setupjavafx.html if using Intellij. Equivalent guides can be found for other IDEs.
