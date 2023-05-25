@@ -49,7 +49,7 @@ public class ReplayView extends Group implements View {
 		halfTurnCount++;
 		if(halfTurnCount >= positions.size()) {
 			halfTurnCount--;
-			AlertMaker.makeAlert("Error", "Invalid move");
+			AlertMaker.makeAlert("Error", "Cannot go forward, currently at last ply.");
 			return false;
 		}
 		else {
@@ -63,7 +63,7 @@ public class ReplayView extends Group implements View {
 		halfTurnCount--;
 		if(halfTurnCount < 0) {
 			halfTurnCount++;
-			AlertMaker.makeAlert("Error", "Invalid move");
+			AlertMaker.makeAlert("Error", "Cannot go backwards, currently at first ply");
 			return false;
 		}
 		else {
